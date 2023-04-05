@@ -64,6 +64,10 @@ extension HomeViewController: UICollectionViewDataSource {
         case locationCollectionView:
             let locationCollectionViewCell = locationCollectionView.dequeueReusableCell(withReuseIdentifier: "LocationCollectionViewCell", for: indexPath) as! LocationCollectionViewCell
             locationCollectionViewCell.button.titleLabel?.text = viewModel.location?.results?[indexPath.row].name
+            if viewModel.location?.results?[indexPath.row].name == "Earth (C-137)" {
+                locationCollectionViewCell.button.backgroundColor = UIColor(named: "primary.500")
+                locationCollectionViewCell.button.titleLabel?.textColor = UIColor(named: "gray.500")
+            }
             return locationCollectionViewCell
         case characterCollectionView:
             let CharacterCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
@@ -79,8 +83,8 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.frame.width - 48) / 2.08
-        let height: CGFloat = width * (243 / 159)
+        let width = (collectionView.frame.width - 48) / 2.05
+        let height: CGFloat = width * (243 / 159.5)
         return CGSize(width: width, height: height)
     }
 }

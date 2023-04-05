@@ -67,14 +67,14 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iej-O4-Q18">
                                                         <rect key="frame" x="0.0" y="57.333333333333329" width="345" height="52"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Character, genre" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="te5-WO-7Iz" customClass="SearchTextField" customModule="PortalGuide" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search character..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="te5-WO-7Iz" customClass="SearchTextField" customModule="PortalGuide" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="345" height="52"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="tintColor" name="grey.300"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="52" id="Q6W-ya-Jc5"/>
                                                                 </constraints>
-                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" name="grey.500"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -108,8 +108,8 @@
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dPK-Vr-apy">
                                 <rect key="frame" x="0.0" y="230.66666666666669" width="393" height="587.33333333333326"/>
-                                <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="10" id="OR6-9c-bL0">
+                                <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="8" id="OR6-9c-bL0">
                                     <size key="itemSize" width="160" height="243"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -123,7 +123,7 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dPK-Vr-apy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0vN-CT-w1D"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dPK-Vr-apy" secondAttribute="bottom" id="Bm7-4q-RHY"/>
@@ -150,6 +150,9 @@
         <image name="background" width="1440" height="693"/>
         <namedColor name="grey.300">
             <color red="0.67450980392156867" green="0.68627450980392157" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="grey.500">
+            <color red="0.12549019607843137" green="0.13333333333333333" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

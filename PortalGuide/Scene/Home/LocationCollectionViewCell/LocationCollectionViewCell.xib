@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="156" height="35"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qZ-d3-n3r">
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qZ-d3-n3r">
                         <rect key="frame" x="0.0" y="0.0" width="156" height="35"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="Mul-ZF-lyN"/>
@@ -26,11 +26,16 @@
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="filled" title="Gazorpazorp">
                             <backgroundConfiguration key="background" cornerRadius="12">
-                                <color key="backgroundColor" name="primary.500"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </backgroundConfiguration>
                             <fontDescription key="titleFontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
-                            <color key="baseForegroundColor" name="grey.500"/>
+                            <color key="baseForegroundColor" name="white"/>
                         </buttonConfiguration>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </button>
                 </subviews>
             </view>
@@ -50,11 +55,8 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <namedColor name="grey.500">
-            <color red="0.12549019607843137" green="0.13333333333333333" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="primary.500">
-            <color red="0.81176470588235294" green="0.98039215686274506" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
