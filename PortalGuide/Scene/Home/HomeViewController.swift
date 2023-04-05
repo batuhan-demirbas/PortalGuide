@@ -31,6 +31,7 @@ class HomeViewController: UIViewController {
             print("error: \(errorMessage)")
         }
         viewModel.successCallback = { [weak self] in
+            self?.locationCollectionView.reloadData()
             guard let selectedLocation = self?.viewModel.location?.results?.first else {return}
             self?.characterIdsInSelectedLocation = self?.viewModel.filterCharacterIds(location: selectedLocation)
             print(self?.characterIdsInSelectedLocation)
@@ -38,6 +39,7 @@ class HomeViewController: UIViewController {
             self?.viewModel.getCharactersByIds(ids: characterIds)
             self?.viewModel.successCallback = { [weak self] in
                 print(self?.viewModel.characters?.first?.name)
+                self?.characterCollectionView.reloadData()
                 
             }
         }
@@ -49,29 +51,41 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case locationCollectionView:
-            return 20
+            return viewModel.location?.results?.count ?? 0
         case characterCollectionView:
-            return 6
+            return viewModel.characters?.count ?? 0
         default:
             return 0
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let locationCollectionViewCell = locationCollectionView.dequeueReusableCell(withReuseIdentifier: "LocationCollectionViewCell", for: indexPath) as! LocationCollectionViewCell
-        
-        let CharacterCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
-    
         switch collectionView {
         case locationCollectionView:
+            let locationCollectionViewCell = locationCollectionView.dequeueReusableCell(withReuseIdentifier: "LocationCollectionViewCell", for: indexPath) as! LocationCollectionViewCell
+            locationCollectionViewCell.button.titleLabel?.text = viewModel.location?.results?[indexPath.row].name
             return locationCollectionViewCell
         case characterCollectionView:
+            let CharacterCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
+            CharacterCollectionViewCell.character = viewModel.characters?[indexPath.row]
+            CharacterCollectionViewCell.configure()
             return CharacterCollectionViewCell
         default:
             return UICollectionViewCell()
         }
     }
+    
+}
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (collectionView.frame.width - 48) / 2.08
+        let height: CGFloat = width * (243 / 159)
+        return CGSize(width: width, height: height)
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case locationCollectionView:
@@ -82,11 +96,6 @@ extension HomeViewController: UICollectionViewDataSource {
             print("defaults")
         }
     }
-    
-}
-
-extension HomeViewController: UICollectionViewDelegate {
-    
 }
 
 

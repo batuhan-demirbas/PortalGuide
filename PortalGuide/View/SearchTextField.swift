@@ -15,13 +15,13 @@ class SearchTextField: UITextField {
         
         guard let placeholder = self.placeholder else {return}
         self.attributedPlaceholder = NSAttributedString(
-            string: "\(placeholder)", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "secondry") ?? .blue]
+            string: "\(placeholder)", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "grey.300") ?? .blue]
         )
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 48, height: 52))
         let imageView = UIImageView(frame: CGRect(x: 16, y: (view.frame.size.height - 24) / 2, width: 24, height: 24))
         imageView.image = UIImage(named: "search")
-        imageView.tintColor = UIColor(named: "secondry")
+        imageView.tintColor = UIColor(named: "grey.300")
         view.addSubview(imageView)
         leftView = view
         leftViewMode = .always
