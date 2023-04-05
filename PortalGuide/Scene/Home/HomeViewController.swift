@@ -7,10 +7,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    
-    @IBOutlet weak var locationLabel: UILabel!
-    
+class HomeViewController: UIViewController {
+        
     private var characterIdsInSelectedLocation: [String]?
     
     let viewModel = HomeViewModel()
@@ -29,7 +27,6 @@ class ViewController: UIViewController {
         }
         viewModel.successCallback = { [weak self] in
             guard let selectedLocation = self?.viewModel.location?.results?.first else {return}
-            self?.locationLabel.text = selectedLocation.name
             self?.characterIdsInSelectedLocation = self?.viewModel.filterCharacterIds(location: selectedLocation)
             print(self?.characterIdsInSelectedLocation)
             guard let characterIds = self?.characterIdsInSelectedLocation else { return }

@@ -9,20 +9,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PortalGuide" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="PortalGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3d-rF-vNZ">
-                                <rect key="frame" x="176" y="416" width="41.333333333333343" height="20.333333333333314"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j5e-kZ-Sat">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="230.66666666666666"/>
                                 <subviews>
@@ -105,20 +99,30 @@
                                     <constraint firstAttribute="trailing" secondItem="k38-Us-hcU" secondAttribute="trailing" constant="24" id="qAO-VF-hBn"/>
                                 </constraints>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dPK-Vr-apy">
+                                <rect key="frame" x="0.0" y="230.66666666666669" width="393" height="587.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OR6-9c-bL0">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="dPK-Vr-apy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0vN-CT-w1D"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dPK-Vr-apy" secondAttribute="bottom" id="Bm7-4q-RHY"/>
+                            <constraint firstItem="dPK-Vr-apy" firstAttribute="top" secondItem="j5e-kZ-Sat" secondAttribute="bottom" id="Nsi-O1-lXR"/>
                             <constraint firstItem="j5e-kZ-Sat" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Vwe-dx-Pv6"/>
                             <constraint firstItem="j5e-kZ-Sat" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YPz-LW-Vw8"/>
-                            <constraint firstItem="Z3d-rF-vNZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ZrK-mD-ECn"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="j5e-kZ-Sat" secondAttribute="trailing" id="j5z-2K-ajG"/>
-                            <constraint firstItem="Z3d-rF-vNZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wuL-aw-Raq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dPK-Vr-apy" secondAttribute="trailing" id="x8l-tt-x0y"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="locationLabel" destination="Z3d-rF-vNZ" id="WS1-gP-84f"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -128,7 +132,7 @@
     <resources>
         <image name="headerbackground" width="1440" height="693"/>
         <namedColor name="secondry">
-            <color red="0.65490196078431373" green="0.66666666666666663" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.65499997138977051" green="0.66699999570846558" blue="0.67500001192092896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

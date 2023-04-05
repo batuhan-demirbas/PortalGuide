@@ -10,9 +10,15 @@
 		D527DEFA29DC9C2F0024510D /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527DEF929DC9C2F0024510D /* SearchTextField.swift */; };
 		D527DEFC29DC9C6E0024510D /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527DEFB29DC9C6E0024510D /* UITextField.swift */; };
 		D5ADD81C29D1C03400D2A11A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D5ADD81B29D1C03400D2A11A /* Kingfisher */; };
+		D5C969C229DD5A7600AEC490 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C969C129DD5A7600AEC490 /* DetailViewController.swift */; };
+		D5C969C429DD5A8B00AEC490 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C969C329DD5A8B00AEC490 /* DetailViewModel.swift */; };
+		D5C969C829DD5B1300AEC490 /* CharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C969C629DD5B1300AEC490 /* CharacterCollectionViewCell.swift */; };
+		D5C969C929DD5B1300AEC490 /* CharacterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C969C729DD5B1300AEC490 /* CharacterCollectionViewCell.xib */; };
+		D5C969CD29DD5FC600AEC490 /* LocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C969CB29DD5FC600AEC490 /* LocationCollectionViewCell.swift */; };
+		D5C969CE29DD5FC600AEC490 /* LocationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C969CC29DD5FC600AEC490 /* LocationCollectionViewCell.xib */; };
 		D5DAF35C29D1AD5900786E53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DAF35B29D1AD5900786E53 /* AppDelegate.swift */; };
 		D5DAF35E29D1AD5900786E53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DAF35D29D1AD5900786E53 /* SceneDelegate.swift */; };
-		D5DAF36029D1AD5900786E53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DAF35F29D1AD5900786E53 /* ViewController.swift */; };
+		D5DAF36029D1AD5900786E53 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DAF35F29D1AD5900786E53 /* HomeViewController.swift */; };
 		D5DAF36329D1AD5900786E53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5DAF36129D1AD5900786E53 /* Main.storyboard */; };
 		D5DAF36529D1AD5A00786E53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5DAF36429D1AD5A00786E53 /* Assets.xcassets */; };
 		D5DAF36829D1AD5A00786E53 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5DAF36629D1AD5A00786E53 /* LaunchScreen.storyboard */; };
@@ -31,10 +37,16 @@
 /* Begin PBXFileReference section */
 		D527DEF929DC9C2F0024510D /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		D527DEFB29DC9C6E0024510D /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		D5C969C129DD5A7600AEC490 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D5C969C329DD5A8B00AEC490 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		D5C969C629DD5B1300AEC490 /* CharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCell.swift; sourceTree = "<group>"; };
+		D5C969C729DD5B1300AEC490 /* CharacterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCollectionViewCell.xib; sourceTree = "<group>"; };
+		D5C969CB29DD5FC600AEC490 /* LocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewCell.swift; sourceTree = "<group>"; };
+		D5C969CC29DD5FC600AEC490 /* LocationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCollectionViewCell.xib; sourceTree = "<group>"; };
 		D5DAF35829D1AD5900786E53 /* PortalGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PortalGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5DAF35B29D1AD5900786E53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5DAF35D29D1AD5900786E53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D5DAF35F29D1AD5900786E53 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D5DAF35F29D1AD5900786E53 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D5DAF36229D1AD5900786E53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D5DAF36429D1AD5A00786E53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5DAF36729D1AD5A00786E53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,6 +75,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D5C969C529DD5AF000AEC490 /* CharacterCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D5C969C629DD5B1300AEC490 /* CharacterCollectionViewCell.swift */,
+				D5C969C729DD5B1300AEC490 /* CharacterCollectionViewCell.xib */,
+			);
+			path = CharacterCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		D5C969CA29DD5FAE00AEC490 /* LocationCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D5C969CB29DD5FC600AEC490 /* LocationCollectionViewCell.swift */,
+				D5C969CC29DD5FC600AEC490 /* LocationCollectionViewCell.xib */,
+			);
+			path = LocationCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		D5DAF34F29D1AD5900786E53 = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +199,8 @@
 		D5DAF37C29D1AFCA00786E53 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				D5C969C129DD5A7600AEC490 /* DetailViewController.swift */,
+				D5C969C329DD5A8B00AEC490 /* DetailViewModel.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -176,7 +208,9 @@
 		D5DAF37D29D1AFE200786E53 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				D5DAF35F29D1AD5900786E53 /* ViewController.swift */,
+				D5C969CA29DD5FAE00AEC490 /* LocationCollectionViewCell */,
+				D5C969C529DD5AF000AEC490 /* CharacterCollectionViewCell */,
+				D5DAF35F29D1AD5900786E53 /* HomeViewController.swift */,
 				D5DAF38F29D1B9DC00786E53 /* HomeViewModel.swift */,
 			);
 			path = Home;
@@ -267,8 +301,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5DAF36829D1AD5A00786E53 /* LaunchScreen.storyboard in Resources */,
+				D5C969C929DD5B1300AEC490 /* CharacterCollectionViewCell.xib in Resources */,
 				D5DAF37629D1AF7700786E53 /* Color.xcassets in Resources */,
 				D5DAF36529D1AD5A00786E53 /* Assets.xcassets in Resources */,
+				D5C969CE29DD5FC600AEC490 /* LocationCollectionViewCell.xib in Resources */,
 				D5DAF36329D1AD5900786E53 /* Main.storyboard in Resources */,
 				D5DAF37829D1AF8400786E53 /* Icon.xcassets in Resources */,
 			);
@@ -281,14 +317,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5C969C229DD5A7600AEC490 /* DetailViewController.swift in Sources */,
 				D5DAF38C29D1B3BF00786E53 /* LocationHelper.swift in Sources */,
 				D527DEFA29DC9C2F0024510D /* SearchTextField.swift in Sources */,
-				D5DAF36029D1AD5900786E53 /* ViewController.swift in Sources */,
+				D5DAF36029D1AD5900786E53 /* HomeViewController.swift in Sources */,
 				D5DAF35C29D1AD5900786E53 /* AppDelegate.swift in Sources */,
+				D5C969C829DD5B1300AEC490 /* CharacterCollectionViewCell.swift in Sources */,
+				D5C969CD29DD5FC600AEC490 /* LocationCollectionViewCell.swift in Sources */,
 				D5DAF39029D1B9DC00786E53 /* HomeViewModel.swift in Sources */,
 				D5DAF38429D1B10700786E53 /* Location.swift in Sources */,
 				D5DAF38929D1B24C00786E53 /* NetworkManager.swift in Sources */,
 				D5DAF38729D1B24100786E53 /* NetworkHelper.swift in Sources */,
+				D5C969C429DD5A8B00AEC490 /* DetailViewModel.swift in Sources */,
 				D5DAF35E29D1AD5900786E53 /* SceneDelegate.swift in Sources */,
 				D5DAF38229D1B0C800786E53 /* Character.swift in Sources */,
 				D5DAF38E29D1B3C800786E53 /* LocationManager.swift in Sources */,
