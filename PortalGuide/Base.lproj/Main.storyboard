@@ -20,7 +20,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j5e-kZ-Sat">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="230.66666666666666"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headerbackground" translatesAutoresizingMaskIntoConstraints="NO" id="oib-Ab-gqo">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="oib-Ab-gqo">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="230.66666666666666"/>
                                     </imageView>
                                     <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3pm-vc-z3P">
@@ -147,7 +147,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="headerbackground" width="1440" height="693"/>
+        <image name="background" width="1440" height="693"/>
         <namedColor name="grey.300">
             <color red="0.67450980392156867" green="0.68627450980392157" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
