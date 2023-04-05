@@ -7,6 +7,7 @@
 
 import UIKit
 
+@IBDesignable
 class SearchTextField: UITextField {
 
     override func awakeFromNib() {
@@ -43,14 +44,6 @@ class SearchTextField: UITextField {
             return layer.cornerRadius
         }
     }
-
-    @objc func togglePasswordVisibility() {
-        isSecureTextEntry.toggle()
-        if let button = self.rightView?.subviews.first as? UIButton {
-            button.setImage(UIImage(named: isSecureTextEntry ? "eye" : "home" ), for: .normal)
-        }
-    }
-    
     
 }
 

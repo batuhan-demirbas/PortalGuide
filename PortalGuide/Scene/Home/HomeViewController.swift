@@ -20,9 +20,14 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         locationCollectionView.register(UINib(nibName: "LocationCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LocationCollectionViewCell")
         characterCollectionView.register(UINib(nibName: "CharacterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CharacterCollectionViewCell")
         viewModelConfiguration()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     fileprivate func viewModelConfiguration() {
@@ -95,9 +100,14 @@ extension HomeViewController: UICollectionViewDelegate {
         case locationCollectionView:
             print("location")
         case characterCollectionView:
-            print("character")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let detailVC = storyboard.instantiateViewController(withIdentifier: "detailViewController") as? DetailViewController {
+                detailVC.modalPresentationStyle = .fullScreen
+                present(detailVC, animated: true)
+            }
         default:
             print("defaults")
+                
         }
     }
 }

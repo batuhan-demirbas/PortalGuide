@@ -48,7 +48,6 @@ class CharacterCollectionViewCell: UICollectionViewCell {
             statusLabel.textColor = UIColor(named: Status.unknown.color)
         }
         
-        
         nameLabel.text = character?.name
         
         if character?.type == "" {
