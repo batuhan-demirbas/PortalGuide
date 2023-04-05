@@ -70,21 +70,29 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3pm-vc-z3P">
+                                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3pm-vc-z3P">
                                                 <rect key="frame" x="0.0" y="125.33333333333331" width="345" height="35"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="2an-OS-NsX"/>
                                                 </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hNh-hu-uBf">
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hNh-hu-uBf">
                                                     <size key="itemSize" width="128" height="128"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells/>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="5ql-t1-IYL"/>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="G9G-8D-0bZ"/>
+                                                </connections>
                                             </collectionView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="3pm-vc-z3P" secondAttribute="trailing" constant="-20" id="1QN-7u-xup"/>
+                                            <constraint firstItem="3pm-vc-z3P" firstAttribute="leading" secondItem="k38-Us-hcU" secondAttribute="leading" constant="-20" id="zmO-t7-k8h"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -101,18 +109,22 @@
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dPK-Vr-apy">
                                 <rect key="frame" x="0.0" y="230.66666666666669" width="393" height="587.33333333333326"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OR6-9c-bL0">
-                                    <size key="itemSize" width="128" height="128"/>
+                                <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="10" id="OR6-9c-bL0">
+                                    <size key="itemSize" width="160" height="243"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="20" minY="24" maxX="20" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="1mr-Lk-EHQ"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="aQJ-UV-HSb"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dPK-Vr-apy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0vN-CT-w1D"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dPK-Vr-apy" secondAttribute="bottom" id="Bm7-4q-RHY"/>
@@ -123,6 +135,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dPK-Vr-apy" secondAttribute="trailing" id="x8l-tt-x0y"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="characterCollectionView" destination="dPK-Vr-apy" id="iqK-vE-p21"/>
+                        <outlet property="locationCollectionView" destination="3pm-vc-z3P" id="g42-uW-Kfz"/>
+                        <outlet property="messageLabel" destination="0Yt-b0-q7o" id="GwS-cB-Sqs"/>
+                        <outlet property="searchTextField" destination="te5-WO-7Iz" id="vkm-hx-E81"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

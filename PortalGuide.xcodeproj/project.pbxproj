@@ -16,6 +16,7 @@
 		D5C969C929DD5B1300AEC490 /* CharacterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C969C729DD5B1300AEC490 /* CharacterCollectionViewCell.xib */; };
 		D5C969CD29DD5FC600AEC490 /* LocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C969CB29DD5FC600AEC490 /* LocationCollectionViewCell.swift */; };
 		D5C969CE29DD5FC600AEC490 /* LocationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5C969CC29DD5FC600AEC490 /* LocationCollectionViewCell.xib */; };
+		D5C969D029DD6C7500AEC490 /* TopRoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C969CF29DD6C7500AEC490 /* TopRoundedImageView.swift */; };
 		D5DAF35C29D1AD5900786E53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DAF35B29D1AD5900786E53 /* AppDelegate.swift */; };
 		D5DAF35E29D1AD5900786E53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DAF35D29D1AD5900786E53 /* SceneDelegate.swift */; };
 		D5DAF36029D1AD5900786E53 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5DAF35F29D1AD5900786E53 /* HomeViewController.swift */; };
@@ -43,6 +44,7 @@
 		D5C969C729DD5B1300AEC490 /* CharacterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterCollectionViewCell.xib; sourceTree = "<group>"; };
 		D5C969CB29DD5FC600AEC490 /* LocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewCell.swift; sourceTree = "<group>"; };
 		D5C969CC29DD5FC600AEC490 /* LocationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationCollectionViewCell.xib; sourceTree = "<group>"; };
+		D5C969CF29DD6C7500AEC490 /* TopRoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRoundedImageView.swift; sourceTree = "<group>"; };
 		D5DAF35829D1AD5900786E53 /* PortalGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PortalGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5DAF35B29D1AD5900786E53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5DAF35D29D1AD5900786E53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				D527DEF929DC9C2F0024510D /* SearchTextField.swift */,
+				D5C969CF29DD6C7500AEC490 /* TopRoundedImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				D5C969C829DD5B1300AEC490 /* CharacterCollectionViewCell.swift in Sources */,
 				D5C969CD29DD5FC600AEC490 /* LocationCollectionViewCell.swift in Sources */,
 				D5DAF39029D1B9DC00786E53 /* HomeViewModel.swift in Sources */,
+				D5C969D029DD6C7500AEC490 /* TopRoundedImageView.swift in Sources */,
 				D5DAF38429D1B10700786E53 /* Location.swift in Sources */,
 				D5DAF38929D1B24C00786E53 /* NetworkManager.swift in Sources */,
 				D5DAF38729D1B24100786E53 /* NetworkHelper.swift in Sources */,
