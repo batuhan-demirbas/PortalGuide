@@ -17,39 +17,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="156" height="35"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1qZ-d3-n3r">
-                        <rect key="frame" x="0.0" y="0.0" width="156" height="35"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="35" id="Mul-ZF-lyN"/>
-                        </constraints>
-                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="filled" title="Gazorpazorp">
-                            <backgroundConfiguration key="background" cornerRadius="12">
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </backgroundConfiguration>
-                            <fontDescription key="titleFontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
-                            <color key="baseForegroundColor" name="white"/>
-                        </buttonConfiguration>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <integer key="value" value="8"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Earth (C-137)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2It-oD-98E">
+                        <rect key="frame" x="8" y="8" width="140" height="19"/>
+                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                        <color key="textColor" name="white"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="1qZ-d3-n3r" secondAttribute="trailing" id="Aqc-ec-eg9"/>
-                <constraint firstItem="1qZ-d3-n3r" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JX5-le-L0q"/>
-                <constraint firstItem="1qZ-d3-n3r" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fKV-ta-fjh"/>
-                <constraint firstAttribute="bottom" secondItem="1qZ-d3-n3r" secondAttribute="bottom" id="xRD-lu-fyA"/>
+                <constraint firstItem="2It-oD-98E" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="16g-DK-dCD"/>
+                <constraint firstAttribute="bottom" secondItem="2It-oD-98E" secondAttribute="bottom" constant="8" id="8G3-GD-81S"/>
+                <constraint firstAttribute="trailing" secondItem="2It-oD-98E" secondAttribute="trailing" constant="8" id="cNu-fn-TDj"/>
+                <constraint firstItem="2It-oD-98E" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="dex-hH-o0f"/>
             </constraints>
             <size key="customSize" width="156" height="195"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <integer key="value" value="8"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="button" destination="1qZ-d3-n3r" id="2z7-dx-bw2"/>
+                <outlet property="label" destination="2It-oD-98E" id="7QL-os-K9N"/>
             </connections>
             <point key="canvasLocation" x="187.78625954198472" y="29.929577464788736"/>
         </collectionViewCell>

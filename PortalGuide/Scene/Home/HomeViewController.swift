@@ -16,10 +16,13 @@ class HomeViewController: UIViewController {
     
     private var characterIdsInSelectedLocation: [String]?
     private var selectedLocation: ResultElement?
+    private var selectedIndexPath: IndexPath?
     let viewModel = HomeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        selectedIndexPath = IndexPath(row: 0, section: 0)
         
         locationCollectionView.register(UINib(nibName: "LocationCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LocationCollectionViewCell")
         characterCollectionView.register(UINib(nibName: "CharacterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CharacterCollectionViewCell")
@@ -70,10 +73,13 @@ extension HomeViewController: UICollectionViewDataSource {
         switch collectionView {
         case locationCollectionView:
             let locationCollectionViewCell = locationCollectionView.dequeueReusableCell(withReuseIdentifier: "LocationCollectionViewCell", for: indexPath) as! LocationCollectionViewCell
-            locationCollectionViewCell.button.titleLabel?.text = viewModel.location?.results?[indexPath.row].name
+            locationCollectionViewCell.label.text = viewModel.location?.results?[indexPath.row].name
             if viewModel.location?.results?[indexPath.row].name == "Earth (C-137)" {
-                locationCollectionViewCell.button.backgroundColor = UIColor(named: "primary.500")
-                locationCollectionViewCell.button.titleLabel?.textColor = UIColor(named: "gray.500")
+                locationCollectionViewCell.backgroundColor = UIColor(named: "primary.500")
+                locationCollectionViewCell.label.textColor = UIColor(named: "gray.500")
+            } else {
+                locationCollectionViewCell.backgroundColor = .clear
+                locationCollectionViewCell.label.textColor = UIColor(named: "white")
             }
             return locationCollectionViewCell
         case characterCollectionView:
@@ -98,6 +104,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndexPath = indexPath
+        collectionView.reloadData()
         switch collectionView {
         case locationCollectionView:
             selectedLocation = viewModel.location?.results?[indexPath.row]
@@ -121,6 +129,24 @@ extension HomeViewController: UICollectionViewDelegate {
             
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let locationCell = cell as? LocationCollectionViewCell {
+            // Her hücrenin varsayılan rengi ve görünümü belirlenir
+            if let location = viewModel.location?.results?[indexPath.row] {
+                if indexPath == selectedIndexPath {
+                    // Seçili hücrenin rengini değiştirin
+                    locationCell.backgroundColor = UIColor(named: "primary.500")
+                    locationCell.label.textColor = UIColor(named: "gray.500")
+                } else {
+                    // Diğer hücrelerin rengini varsayılan hâline getirin
+                    locationCell.backgroundColor = .clear
+                    locationCell.label.textColor = .white
+                }
+            }
+        }
+    }
+    
 }
 
 

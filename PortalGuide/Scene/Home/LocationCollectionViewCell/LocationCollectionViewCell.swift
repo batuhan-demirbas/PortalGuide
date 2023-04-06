@@ -9,12 +9,11 @@ import UIKit
 
 class LocationCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var button: UIButton!
-
+    @IBOutlet weak var label: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        button.titleLabel?.numberOfLines = 1
     }
 
 }
