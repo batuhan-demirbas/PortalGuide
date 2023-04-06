@@ -27,7 +27,7 @@ class HomeManager: HomeManagerProtocol {
     
     func getMultipleCharacters(ids: [String], complete: @escaping(([Character]?, Error?)->())) {
         let joinedIds = ids.joined(separator: ",")
-        NetworkManager.shared.request(type: [Character].self, url: HomeEndpoint.character.path + "/\(joinedIds)", method: .get) { response in
+        NetworkManager.shared.request(type: [Character].self, url: HomeEndpoint.character.path + "/\(joinedIds),", method: .get) { response in
             switch response {
             case .success(let data):
                 complete(data, nil)

@@ -15,12 +15,12 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var characterCollectionView: UICollectionView!
     
     private var characterIdsInSelectedLocation: [String]?
-    
+    private var selectedLocation: ResultElement?
     let viewModel = HomeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         locationCollectionView.register(UINib(nibName: "LocationCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LocationCollectionViewCell")
         characterCollectionView.register(UINib(nibName: "CharacterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CharacterCollectionViewCell")
         viewModelConfiguration()
@@ -37,8 +37,10 @@ class HomeViewController: UIViewController {
         }
         viewModel.successCallback = { [weak self] in
             self?.locationCollectionView.reloadData()
-            guard let selectedLocation = self?.viewModel.location?.results?.first else {return}
-            self?.characterIdsInSelectedLocation = self?.viewModel.filterCharacterIds(location: selectedLocation)
+            if self?.selectedLocation == nil {
+                self?.selectedLocation = self?.viewModel.location?.results?.first
+            }
+            self?.characterIdsInSelectedLocation = self?.viewModel.filterCharacterIds(location: (self?.selectedLocation)!)
             print(self?.characterIdsInSelectedLocation)
             guard let characterIds = self?.characterIdsInSelectedLocation else { return }
             self?.viewModel.getCharactersByIds(ids: characterIds)
@@ -98,16 +100,25 @@ extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case locationCollectionView:
-            print("location")
+            selectedLocation = viewModel.location?.results?[indexPath.row]
+            viewModel.characters?.removeAll()
+            self.characterIdsInSelectedLocation = self.viewModel.filterCharacterIds(location: (self.selectedLocation)!)
+            guard let characterIds = self.characterIdsInSelectedLocation else { return }
+            self.viewModel.getCharactersByIds(ids: characterIds)
+            self.viewModel.successCallback = { [weak self] in
+                self?.characterCollectionView.reloadData()
+            }
         case characterCollectionView:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if let detailVC = storyboard.instantiateViewController(withIdentifier: "detailViewController") as? DetailViewController {
+                //detailVC.character = viewModel.characters?[indexPath.row]
+                //detailVC.configure()
                 detailVC.modalPresentationStyle = .fullScreen
                 present(detailVC, animated: true)
             }
         default:
             print("defaults")
-                
+            
         }
     }
 }
