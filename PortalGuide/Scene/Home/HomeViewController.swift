@@ -14,23 +14,38 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var locationCollectionView: UICollectionView!
     @IBOutlet weak var characterCollectionView: UICollectionView!
     
-    private var characterIdsInSelectedLocation: [String]?
     private var selectedLocation: ResultElement?
-    private var selectedIndexPath: IndexPath?
+    private var selectedIndexPath: IndexPath = IndexPath(row: 0, section: 0)
+    private var characterIdsInSelectedLocation: [String]?
+    var filteredCharacters: [Character]?
+    
     let viewModel = HomeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        selectedIndexPath = IndexPath(row: 0, section: 0)
+        updateMessageLabel()
+        
+        searchTextField.delegate = self
         
         locationCollectionView.register(UINib(nibName: "LocationCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LocationCollectionViewCell")
         characterCollectionView.register(UINib(nibName: "CharacterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CharacterCollectionViewCell")
+        
         viewModelConfiguration()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func updateMessageLabel() {
+        if UserDefaults.standard.bool(forKey: "HasLaunchedBefore") {
+            messageLabel.text = "Hi,"
+        }
+        else {
+            messageLabel.text = "Welcome,"
+            UserDefaults.standard.set(true, forKey: "HasLaunchedBefore")
+        }
     }
     
     fileprivate func viewModelConfiguration() {
@@ -48,7 +63,7 @@ class HomeViewController: UIViewController {
             guard let characterIds = self?.characterIdsInSelectedLocation else { return }
             self?.viewModel.getCharactersByIds(ids: characterIds)
             self?.viewModel.successCallback = { [weak self] in
-                print(self?.viewModel.characters?.first?.name)
+                self?.filteredCharacters = self?.viewModel.characters
                 self?.characterCollectionView.reloadData()
                 
             }
@@ -63,7 +78,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case locationCollectionView:
             return viewModel.location?.results?.count ?? 0
         case characterCollectionView:
-            return viewModel.characters?.count ?? 0
+            return filteredCharacters?.count ?? 0
         default:
             return 0
         }
@@ -84,7 +99,7 @@ extension HomeViewController: UICollectionViewDataSource {
             return locationCollectionViewCell
         case characterCollectionView:
             let CharacterCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
-            CharacterCollectionViewCell.character = viewModel.characters?[indexPath.row]
+            CharacterCollectionViewCell.character = filteredCharacters?[indexPath.row]
             CharacterCollectionViewCell.configure()
             return CharacterCollectionViewCell
         default:
@@ -109,11 +124,17 @@ extension HomeViewController: UICollectionViewDelegate {
         switch collectionView {
         case locationCollectionView:
             selectedLocation = viewModel.location?.results?[indexPath.row]
-            viewModel.characters?.removeAll()
+            filteredCharacters?.removeAll()
             self.characterIdsInSelectedLocation = self.viewModel.filterCharacterIds(location: (self.selectedLocation)!)
             guard let characterIds = self.characterIdsInSelectedLocation else { return }
             self.viewModel.getCharactersByIds(ids: characterIds)
             self.viewModel.successCallback = { [weak self] in
+                if self?.searchTextField.text != "" {
+                    self?.filterCharacter()
+                } else {
+                    self?.filteredCharacters = self?.viewModel.characters
+
+                }
                 self?.characterCollectionView.reloadData()
             }
         case characterCollectionView:
@@ -132,14 +153,11 @@ extension HomeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let locationCell = cell as? LocationCollectionViewCell {
-            // Her hücrenin varsayılan rengi ve görünümü belirlenir
-            if let location = viewModel.location?.results?[indexPath.row] {
+            if (viewModel.location?.results?[indexPath.row]) != nil {
                 if indexPath == selectedIndexPath {
-                    // Seçili hücrenin rengini değiştirin
                     locationCell.backgroundColor = UIColor(named: "primary.500")
                     locationCell.label.textColor = UIColor(named: "gray.500")
                 } else {
-                    // Diğer hücrelerin rengini varsayılan hâline getirin
                     locationCell.backgroundColor = .clear
                     locationCell.label.textColor = .white
                 }
@@ -149,4 +167,45 @@ extension HomeViewController: UICollectionViewDelegate {
     
 }
 
-
+extension HomeViewController: UITextFieldDelegate {
+    
+    func filterCharacter() {
+        filteredCharacters = []
+        
+        guard let searchText = searchTextField.text else { return }
+        
+        filteredCharacters = viewModel.characters?.filter({ $0.name?.lowercased().contains(searchText.lowercased()) == true }) ?? []
+        
+        characterCollectionView.reloadData()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        filteredCharacters = []
+        
+        let searchText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
+        
+        if searchText == "" {
+            filteredCharacters = viewModel.characters ?? []
+        } else {
+            
+            filteredCharacters = viewModel.characters?.filter({ $0.name?.lowercased().contains(searchText.lowercased()) == true }) ?? []
+        }
+        
+        characterCollectionView.reloadData()
+        
+        return true
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        // TextField temizlendiğinde çalışır
+        
+        // Orijinal veriyi filtrelenmiş veriye kopyala
+        filteredCharacters = viewModel.characters
+        
+        // CollectionView'da güncel veriyi yeniden yükle
+        characterCollectionView.reloadData()
+        
+        return true
+    }
+}

@@ -83,6 +83,9 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSearch" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="3WJ-hX-T8W"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
