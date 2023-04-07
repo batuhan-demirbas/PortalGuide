@@ -32,6 +32,7 @@ class DetailViewController: UIViewController {
         let episodes = viewModel.filterEpisodeURLs(episodeURLs: character.episode)
         let imageURL = URL(string: character.image ?? "")
         
+        title = character.name
         imageView.kf.setImage(with: imageURL)
         statusLabel.text = character.status
         specyLabel.text = character.species

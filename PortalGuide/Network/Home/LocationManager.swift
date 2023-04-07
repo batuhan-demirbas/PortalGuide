@@ -8,14 +8,14 @@
 import Foundation
 
 protocol HomeManagerProtocol {
-    func getLocation(complete: @escaping((Location?, Error?)->()))
+    func getLocation(page: String, complete: @escaping((Location?, Error?)->()))
 }
 
 class HomeManager: HomeManagerProtocol {
     static let shared = HomeManager()
     
-    func getLocation(complete: @escaping((Location?, Error?)->())) {
-        NetworkManager.shared.request(type: Location.self, url: HomeEndpoint.location.path, method: .get) { response in
+    func getLocation(page: String, complete: @escaping((Location?, Error?)->())) {
+        NetworkManager.shared.request(type: Location.self, url: HomeEndpoint.location.path + "?page=\(page)", method: .get) { response in
             switch response {
             case .success(let data):
                 complete(data, nil)

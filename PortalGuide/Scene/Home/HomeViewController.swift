@@ -57,14 +57,14 @@ class HomeViewController: UIViewController {
     }
     
     fileprivate func viewModelConfiguration() {
-        viewModel.getLocation()
+        viewModel.getLocation(page: "1")
         viewModel.errorCallback = { [weak self] errorMessage in
             print("error: \(errorMessage)")
         }
         viewModel.successCallback = { [weak self] in
             self?.locationCollectionView.reloadData()
             if self?.selectedLocation == nil {
-                self?.selectedLocation = self?.viewModel.location?.results?.first
+                self?.selectedLocation = self?.viewModel.location?.results.first
             }
             self?.characterIdsInSelectedLocation = self?.viewModel.filterCharacterIds(location: (self?.selectedLocation)!)
             guard let characterIds = self?.characterIdsInSelectedLocation else { return }
@@ -91,7 +91,7 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case locationCollectionView:
-            return viewModel.location?.results?.count ?? 0
+            return viewModel.location?.results.count ?? 0
         case characterCollectionView:
             return filteredCharacters?.count ?? 6
         default:
@@ -103,8 +103,8 @@ extension HomeViewController: UICollectionViewDataSource {
         switch collectionView {
         case locationCollectionView:
             let locationCollectionViewCell = locationCollectionView.dequeueReusableCell(withReuseIdentifier: "LocationCollectionViewCell", for: indexPath) as! LocationCollectionViewCell
-            locationCollectionViewCell.label.text = viewModel.location?.results?[indexPath.row].name
-            if viewModel.location?.results?[indexPath.row].name == "Earth (C-137)" {
+            locationCollectionViewCell.label.text = viewModel.locationArray[indexPath.row].name
+            if viewModel.location?.results[indexPath.row].name == "Earth (C-137)" {
                 locationCollectionViewCell.backgroundColor = UIColor(named: "primary.500")
                 locationCollectionViewCell.label.textColor = UIColor(named: "gray.500")
             } else {
@@ -144,8 +144,9 @@ extension HomeViewController: UICollectionViewDelegate {
         switch collectionView {
         case locationCollectionView:
             //characterCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
-            selectedLocation = viewModel.location?.results?[indexPath.row]
-            filteredCharacters?.removeAll()
+            selectedLocation = viewModel.location?.results[indexPath.row]
+            filteredCharacters = nil
+            characterCollectionView.reloadData()
             self.characterIdsInSelectedLocation = self.viewModel.filterCharacterIds(location: (self.selectedLocation)!)
             guard let characterIds = self.characterIdsInSelectedLocation else { return }
             self.viewModel.getCharactersByIds(ids: characterIds)
@@ -159,7 +160,7 @@ extension HomeViewController: UICollectionViewDelegate {
                 self?.characterCollectionView.reloadData()
             }
         case characterCollectionView:
-            guard let character = viewModel.characters?[indexPath.row] else { return }
+            guard let character = filteredCharacters?[indexPath.row] else { return }
             let sender: Character = character
             performSegue(withIdentifier: "showDetail", sender: sender)
             
@@ -171,7 +172,7 @@ extension HomeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let locationCell = cell as? LocationCollectionViewCell {
-            if (viewModel.location?.results?[indexPath.row]) != nil {
+            if (viewModel.location?.results[indexPath.row]) != nil {
                 if indexPath == selectedIndexPath {
                     locationCell.backgroundColor = UIColor(named: "primary.500")
                     locationCell.label.textColor = UIColor(named: "gray.500")
@@ -216,14 +217,34 @@ extension HomeViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        // TextField temizlendiğinde çalışır
-        
-        // Orijinal veriyi filtrelenmiş veriye kopyala
         filteredCharacters = viewModel.characters
         
-        // CollectionView'da güncel veriyi yeniden yükle
         characterCollectionView.reloadData()
         
         return true
     }
+}
+
+extension HomeViewController: UIScrollViewDelegate {
+    /*
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            let contentOffsetX = scrollView.contentOffset.x
+            let maximumOffsetX = scrollView.contentSize.width - scrollView.frame.width
+            
+            if contentOffsetX == maximumOffsetX {
+                loadMoreData()
+            }
+        }
+        
+        func loadMoreData() {
+            viewModel.getLocation(page: "2")
+            viewModel.errorCallback = { [weak self] errorMessage in
+                print("error: \(errorMessage)")
+            }
+            viewModel.successCallback = { [weak self] in                
+                self?.locationCollectionView.reloadData()
+            }
+            
+        }
+     */
 }

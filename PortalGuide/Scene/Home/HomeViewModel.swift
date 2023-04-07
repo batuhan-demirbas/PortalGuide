@@ -11,15 +11,18 @@ class HomeViewModel {
     let manager = HomeManager.shared
     
     var location: Location?
+    var locationArray: [ResultElement] = []
     var characters: [Character]?
     var errorCallback: ((String)->())?
     var successCallback: (()->())?
     
-    func getLocation() {
-        manager.getLocation { [weak self] location, error in
+    func getLocation(page: String) {
+        manager.getLocation(page: page) { [weak self] location, error in
+            guard let location = location else { return }
             if let error = error {
                 self?.errorCallback?(error.localizedDescription)
             } else {
+                self?.locationArray.append(contentsOf: (location.results))
                 self?.location = location
                 self?.successCallback?()
             }
