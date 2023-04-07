@@ -20,6 +20,7 @@ class HomeViewController: UIViewController {
     var filteredCharacters: [Character]?
     
     let viewModel = HomeViewModel()
+    var page = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class HomeViewController: UIViewController {
         
         searchTextField.delegate = self
         //hideKeyboardWhenTappedAround()
-
+        
         
         locationCollectionView.register(UINib(nibName: "LocationCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LocationCollectionViewCell")
         characterCollectionView.register(UINib(nibName: "CharacterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CharacterCollectionViewCell")
@@ -91,7 +92,7 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case locationCollectionView:
-            return viewModel.location?.results.count ?? 0
+            return viewModel.locationArray.count
         case characterCollectionView:
             return filteredCharacters?.count ?? 6
         default:
@@ -104,7 +105,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case locationCollectionView:
             let locationCollectionViewCell = locationCollectionView.dequeueReusableCell(withReuseIdentifier: "LocationCollectionViewCell", for: indexPath) as! LocationCollectionViewCell
             locationCollectionViewCell.label.text = viewModel.locationArray[indexPath.row].name
-            if viewModel.location?.results[indexPath.row].name == "Earth (C-137)" {
+            if viewModel.locationArray[indexPath.row].name == "Earth (C-137)" {
                 locationCollectionViewCell.backgroundColor = UIColor(named: "primary.500")
                 locationCollectionViewCell.label.textColor = UIColor(named: "gray.500")
             } else {
@@ -144,7 +145,7 @@ extension HomeViewController: UICollectionViewDelegate {
         switch collectionView {
         case locationCollectionView:
             //characterCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
-            selectedLocation = viewModel.location?.results[indexPath.row]
+            selectedLocation = viewModel.locationArray[indexPath.row]
             filteredCharacters = nil
             characterCollectionView.reloadData()
             self.characterIdsInSelectedLocation = self.viewModel.filterCharacterIds(location: (self.selectedLocation)!)
@@ -172,7 +173,7 @@ extension HomeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let locationCell = cell as? LocationCollectionViewCell {
-            if (viewModel.location?.results[indexPath.row]) != nil {
+            if (viewModel.locationArray[indexPath.row]) != nil {
                 if indexPath == selectedIndexPath {
                     locationCell.backgroundColor = UIColor(named: "primary.500")
                     locationCell.label.textColor = UIColor(named: "gray.500")
@@ -226,25 +227,33 @@ extension HomeViewController: UITextFieldDelegate {
 }
 
 extension HomeViewController: UIScrollViewDelegate {
-    /*
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == locationCollectionView {
             let contentOffsetX = scrollView.contentOffset.x
             let maximumOffsetX = scrollView.contentSize.width - scrollView.frame.width
+
+            guard let nextPage = viewModel.location?.info?.next?.split(separator: "=").last else { return }
             
-            if contentOffsetX == maximumOffsetX {
-                loadMoreData()
+            let threshold: CGFloat = 10.0 // Eşik değeri
+            
+            if contentOffsetX + threshold >= maximumOffsetX {
+                if viewModel.location?.info?.next != nil && page != Int(nextPage)  {
+                    loadMoreData()
+                    page += 1
+                }
             }
+        }
+    }
+    
+    func loadMoreData() {
+        let nextPage = viewModel.location?.info?.next?.split(separator: "=").last
+        viewModel.getLocation(page: String(nextPage ?? "1"))
+        viewModel.errorCallback = { [weak self] errorMessage in
+            print("error: \(errorMessage)")
+        }
+        viewModel.successCallback = { [weak self] in
+            self?.locationCollectionView.reloadData()
         }
         
-        func loadMoreData() {
-            viewModel.getLocation(page: "2")
-            viewModel.errorCallback = { [weak self] errorMessage in
-                print("error: \(errorMessage)")
-            }
-            viewModel.successCallback = { [weak self] in                
-                self?.locationCollectionView.reloadData()
-            }
-            
-        }
-     */
+    }
 }
