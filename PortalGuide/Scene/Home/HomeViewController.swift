@@ -26,6 +26,8 @@ class HomeViewController: UIViewController {
         
         updateMessageLabel()
         
+        hideKeyboardWhenTappedAround()
+        
         searchTextField.delegate = self
         
         locationCollectionView.register(UINib(nibName: "LocationCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LocationCollectionViewCell")
@@ -36,6 +38,11 @@ class HomeViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     func updateMessageLabel() {
@@ -59,7 +66,6 @@ class HomeViewController: UIViewController {
                 self?.selectedLocation = self?.viewModel.location?.results?.first
             }
             self?.characterIdsInSelectedLocation = self?.viewModel.filterCharacterIds(location: (self?.selectedLocation)!)
-            print(self?.characterIdsInSelectedLocation)
             guard let characterIds = self?.characterIdsInSelectedLocation else { return }
             self?.viewModel.getCharactersByIds(ids: characterIds)
             self?.viewModel.successCallback = { [weak self] in
@@ -67,6 +73,14 @@ class HomeViewController: UIViewController {
                 self?.characterCollectionView.reloadData()
                 
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showDetail") {
+            let detailVC = segue.destination as! DetailViewController
+            let object = sender as! Character
+            detailVC.character = object
         }
     }
     
@@ -123,6 +137,7 @@ extension HomeViewController: UICollectionViewDelegate {
         collectionView.reloadData()
         switch collectionView {
         case locationCollectionView:
+            //characterCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
             selectedLocation = viewModel.location?.results?[indexPath.row]
             filteredCharacters?.removeAll()
             self.characterIdsInSelectedLocation = self.viewModel.filterCharacterIds(location: (self.selectedLocation)!)
@@ -133,18 +148,15 @@ extension HomeViewController: UICollectionViewDelegate {
                     self?.filterCharacter()
                 } else {
                     self?.filteredCharacters = self?.viewModel.characters
-
+                    
                 }
                 self?.characterCollectionView.reloadData()
             }
         case characterCollectionView:
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let detailVC = storyboard.instantiateViewController(withIdentifier: "detailViewController") as? DetailViewController {
-                //detailVC.character = viewModel.characters?[indexPath.row]
-                //detailVC.configure()
-                detailVC.modalPresentationStyle = .fullScreen
-                present(detailVC, animated: true)
-            }
+            guard let character = viewModel.characters?[indexPath.row] else { return }
+            let sender: Character = character
+            performSegue(withIdentifier: "showDetail", sender: sender)
+            
         default:
             print("defaults")
             

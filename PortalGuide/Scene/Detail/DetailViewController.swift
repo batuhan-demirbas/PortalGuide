@@ -19,27 +19,27 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var createdLabel: UILabel!
     
     var character: Character?
+    let viewModel = DetailViewModel()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configure()
     }
     
     func configure() {
-        let imageURL = URL(string: character?.image ?? "")
-        imageView.kf.setImage(with: imageURL)
+        guard let character = character else { return }
+        let episodes = viewModel.filterEpisodeURLs(episodeURLs: character.episode)
+        let imageURL = URL(string: character.image ?? "")
         
-        statusLabel.text = character?.status
-        specyLabel.text = character?.species
-        genderLabel.text = character?.gender
-        originLabel.text = character?.origin?.name
-        locationLabel.text = character?.location?.name
-        episodesLabel.text = character?.episode?.first
-        createdLabel.text = character?.created
-    }
-    
-    @IBAction func backButtonTapped(_ sender:UIButton) {
-        dismiss(animated: true)
+        imageView.kf.setImage(with: imageURL)
+        statusLabel.text = character.status
+        specyLabel.text = character.species
+        genderLabel.text = character.gender
+        originLabel.text = character.origin?.name
+        locationLabel.text = character.location?.name
+        episodesLabel.text = episodes.joined(separator: ", ")
+        createdLabel.text = character.created?.convertToCustomDateFormat()
     }
 
 }
