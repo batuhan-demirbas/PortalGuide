@@ -26,12 +26,13 @@ class HomeViewController: UIViewController {
         
         updateMessageLabel()
         
-        hideKeyboardWhenTappedAround()
-        
         searchTextField.delegate = self
+        //hideKeyboardWhenTappedAround()
+
         
         locationCollectionView.register(UINib(nibName: "LocationCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LocationCollectionViewCell")
         characterCollectionView.register(UINib(nibName: "CharacterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CharacterCollectionViewCell")
+        characterCollectionView.register(UINib(nibName: "SkeletonCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkeletonCollectionViewCell")
         
         viewModelConfiguration()
     }
@@ -92,7 +93,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case locationCollectionView:
             return viewModel.location?.results?.count ?? 0
         case characterCollectionView:
-            return filteredCharacters?.count ?? 0
+            return filteredCharacters?.count ?? 6
         default:
             return 0
         }
@@ -112,10 +113,15 @@ extension HomeViewController: UICollectionViewDataSource {
             }
             return locationCollectionViewCell
         case characterCollectionView:
-            let CharacterCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
-            CharacterCollectionViewCell.character = filteredCharacters?[indexPath.row]
-            CharacterCollectionViewCell.configure()
-            return CharacterCollectionViewCell
+            if filteredCharacters == nil {
+                let skeletonCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "SkeletonCollectionViewCell", for: indexPath) as! SkeletonCollectionViewCell
+                return skeletonCollectionViewCell
+            } else {
+                let CharacterCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
+                CharacterCollectionViewCell.character = filteredCharacters?[indexPath.row]
+                CharacterCollectionViewCell.configure()
+                return CharacterCollectionViewCell
+            }
         default:
             return UICollectionViewCell()
         }
