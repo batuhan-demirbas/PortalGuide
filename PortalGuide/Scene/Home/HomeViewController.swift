@@ -13,10 +13,11 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var locationCollectionView: UICollectionView!
     @IBOutlet weak var characterCollectionView: UICollectionView!
+    @IBOutlet weak var noalienStackView: UIStackView!
     
-    private var selectedLocation: ResultElement?
+    var selectedLocation: ResultElement?
     private var selectedIndexPath: IndexPath = IndexPath(row: 0, section: 0)
-    private var characterIdsInSelectedLocation: [String]?
+    var characterIdsInSelectedLocation: [String]?
     var filteredCharacters: [Character]?
     
     let viewModel = HomeViewModel()
@@ -94,6 +95,12 @@ extension HomeViewController: UICollectionViewDataSource {
         case locationCollectionView:
             return viewModel.locationArray.count
         case characterCollectionView:
+            if let characterIds = self.characterIdsInSelectedLocation {
+                if characterIds.isEmpty {
+                    noalienStackView.isHidden = false
+                    return 0
+                }
+            }
             return filteredCharacters?.count ?? 6
         default:
             return 0
@@ -132,7 +139,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.frame.width - 48) / 2.05
+        let width = (collectionView.frame.width - 48) / 2.1
         let height: CGFloat = width * (243 / 159.5)
         return CGSize(width: width, height: height)
     }
@@ -140,6 +147,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        noalienStackView.isHidden = true
         selectedIndexPath = indexPath
         collectionView.reloadData()
         switch collectionView {

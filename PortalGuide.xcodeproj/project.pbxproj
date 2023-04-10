@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D520783529E44C96001BD84D /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D520783429E44C96001BD84D /* SplashViewController.swift */; };
 		D527DEFA29DC9C2F0024510D /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527DEF929DC9C2F0024510D /* SearchTextField.swift */; };
 		D527DEFC29DC9C6E0024510D /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527DEFB29DC9C6E0024510D /* UITextField+Extension.swift */; };
 		D5ADD81C29D1C03400D2A11A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D5ADD81B29D1C03400D2A11A /* Kingfisher */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D520783429E44C96001BD84D /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		D527DEF929DC9C2F0024510D /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		D527DEFB29DC9C6E0024510D /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		D5C969C129DD5A7600AEC490 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D520783329E44C79001BD84D /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				D520783429E44C96001BD84D /* SplashViewController.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		D5C969C529DD5AF000AEC490 /* CharacterCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +152,7 @@
 		D5DAF36F29D1AF5600786E53 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				D520783329E44C79001BD84D /* Splash */,
 				D5DAF37D29D1AFE200786E53 /* Home */,
 				D5DAF37C29D1AFCA00786E53 /* Detail */,
 			);
@@ -345,6 +356,7 @@
 				D5F8D76229E0024E00B318EF /* UIViewController+Extension.swift in Sources */,
 				D5C969D029DD6C7500AEC490 /* TopRoundedImageView.swift in Sources */,
 				D5DAF38429D1B10700786E53 /* Location.swift in Sources */,
+				D520783529E44C96001BD84D /* SplashViewController.swift in Sources */,
 				D5F8D76029DFFCD500B318EF /* String+Extension.swift in Sources */,
 				D5DAF38929D1B24C00786E53 /* NetworkManager.swift in Sources */,
 				D5DAF38729D1B24100786E53 /* NetworkHelper.swift in Sources */,
