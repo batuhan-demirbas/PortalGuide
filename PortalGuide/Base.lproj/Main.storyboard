@@ -222,10 +222,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="YL3-fK-oBd"/>
                     <connections>
+                        <outlet property="alertImageView" destination="16w-23-Btt" id="Hcc-p7-hFr"/>
+                        <outlet property="alertLabel" destination="hmz-bo-XoG" id="vOf-Tt-7Fa"/>
+                        <outlet property="alertStackView" destination="w1G-c6-vOx" id="WFm-Hk-wGE"/>
                         <outlet property="characterCollectionView" destination="dPK-Vr-apy" id="iqK-vE-p21"/>
                         <outlet property="locationCollectionView" destination="3pm-vc-z3P" id="g42-uW-Kfz"/>
                         <outlet property="messageLabel" destination="0Yt-b0-q7o" id="GwS-cB-Sqs"/>
-                        <outlet property="noalienStackView" destination="w1G-c6-vOx" id="WFm-Hk-wGE"/>
                         <outlet property="searchTextField" destination="te5-WO-7Iz" id="vkm-hx-E81"/>
                         <segue destination="sBi-u9-yfo" kind="show" identifier="showDetail" id="f6z-fP-tAG"/>
                     </connections>

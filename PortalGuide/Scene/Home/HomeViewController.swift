@@ -13,7 +13,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var locationCollectionView: UICollectionView!
     @IBOutlet weak var characterCollectionView: UICollectionView!
-    @IBOutlet weak var noalienStackView: UIStackView!
+    @IBOutlet weak var alertStackView: UIStackView!
+    @IBOutlet weak var alertImageView: UIImageView!
+    @IBOutlet weak var alertLabel: UILabel!
     
     var selectedLocation: ResultElement?
     private var selectedIndexPath: IndexPath = IndexPath(row: 0, section: 0)
@@ -97,9 +99,20 @@ extension HomeViewController: UICollectionViewDataSource {
         case characterCollectionView:
             if let characterIds = self.characterIdsInSelectedLocation {
                 if characterIds.isEmpty {
-                    noalienStackView.isHidden = false
+                    alertStackView.isHidden = false
+                    alertImageView.image = UIImage(named: "noalien")
+                    alertLabel.text = "no signs of life found"
                     return 0
                 }
+            }
+            if filteredCharacters?.count == 0 {
+                alertStackView.isHidden = false
+                alertImageView.image = UIImage(named: "nofound")
+                alertLabel.text = "character not found"
+                
+            } else {
+                alertStackView.isHidden = true
+                
             }
             return filteredCharacters?.count ?? 6
         default:
@@ -147,7 +160,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        noalienStackView.isHidden = true
+        alertStackView.isHidden = true
         selectedIndexPath = indexPath
         collectionView.reloadData()
         switch collectionView {
@@ -239,7 +252,7 @@ extension HomeViewController: UIScrollViewDelegate {
         if scrollView == locationCollectionView {
             let contentOffsetX = scrollView.contentOffset.x
             let maximumOffsetX = scrollView.contentSize.width - scrollView.frame.width
-
+            
             guard let nextPage = viewModel.location?.info?.next?.split(separator: "=").last else { return }
             
             let threshold: CGFloat = 10.0 // Eşik değeri

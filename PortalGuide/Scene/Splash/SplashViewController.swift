@@ -33,7 +33,10 @@ class SplashViewController: UIViewController {
             self?.viewModel.getCharactersByIds(ids: characterIds)
             self?.viewModel.successCallback = { [weak self] in
                 homeVC.filteredCharacters = self?.viewModel.characters
-                self?.performSegue(withIdentifier: "showHome", sender: nil)
+                _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { timer in
+                    self?.performSegue(withIdentifier: "showHome", sender: nil)
+
+                }
             }
         }
     }
