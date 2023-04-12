@@ -9,6 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var specyLabel: UILabel!
@@ -20,11 +21,36 @@ class DetailViewController: UIViewController {
     
     var character: Character?
     let viewModel = DetailViewModel()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 20)
+        
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if UIDevice.current.orientation.isLandscape {
+            if let constraints = imageView.superview?.constraints {
+                for constraint in constraints {
+                    constraint.isActive = false
+                }
+            }
+            self.stackView.axis = .horizontal
+            
+        } else {
+            if let constraints = imageView.superview?.constraints {
+                for constraint in constraints {
+                    constraint.isActive = true
+                }
+            }
+            stackView.removeConstraint(stackView.constraints.last!)
+            self.stackView.axis = .vertical
+        }
+        
     }
     
     func configure() {
@@ -42,5 +68,5 @@ class DetailViewController: UIViewController {
         episodesLabel.text = episodes.joined(separator: ", ")
         createdLabel.text = character.created?.convertToCustomDateFormat()
     }
-
+    
 }

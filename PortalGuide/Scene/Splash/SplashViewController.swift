@@ -27,7 +27,7 @@ class SplashViewController: UIViewController {
         viewModel.successCallback = { [weak self] in
             let homeVC = HomeViewController()
             homeVC.selectedLocation = self?.viewModel.location?.results.first
-        
+            
             homeVC.characterIdsInSelectedLocation = self?.viewModel.filterCharacterIds(location: (homeVC.selectedLocation)!)
             guard let characterIds = homeVC.characterIdsInSelectedLocation else { return }
             self?.viewModel.getCharactersByIds(ids: characterIds)
@@ -35,7 +35,7 @@ class SplashViewController: UIViewController {
                 homeVC.filteredCharacters = self?.viewModel.characters
                 _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { timer in
                     self?.performSegue(withIdentifier: "showHome", sender: nil)
-
+                    
                 }
             }
         }

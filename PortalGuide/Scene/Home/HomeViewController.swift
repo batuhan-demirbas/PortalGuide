@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var headarView: UIView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var locationCollectionView: UICollectionView!
@@ -21,7 +22,6 @@ class HomeViewController: UIViewController {
     private var selectedIndexPath: IndexPath = IndexPath(row: 0, section: 0)
     var characterIdsInSelectedLocation: [String]?
     var filteredCharacters: [Character]?
-    
     let viewModel = HomeViewModel()
     var page = 1
     
@@ -31,11 +31,10 @@ class HomeViewController: UIViewController {
         updateMessageLabel()
         
         searchTextField.delegate = self
-        //hideKeyboardWhenTappedAround()
-        
         
         locationCollectionView.register(UINib(nibName: "LocationCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LocationCollectionViewCell")
         characterCollectionView.register(UINib(nibName: "CharacterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CharacterCollectionViewCell")
+        characterCollectionView.register(UINib(nibName: "CharacterLandscapeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CharacterLandscapeCollectionViewCell")
         characterCollectionView.register(UINib(nibName: "SkeletonCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkeletonCollectionViewCell")
         
         viewModelConfiguration()
@@ -43,6 +42,19 @@ class HomeViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        characterCollectionView.reloadData()
+        if UIDevice.current.orientation.isLandscape {
+            let aspectRatioConstraint = NSLayoutConstraint(item: headarView, attribute: .width, relatedBy: .equal, toItem: headarView, attribute: .height, multiplier: 812/226, constant: 0)
+            NSLayoutConstraint.activate([aspectRatioConstraint])
+        } else {
+            let aspectRatioConstraint = NSLayoutConstraint(item: headarView, attribute: .width, relatedBy: .equal, toItem: headarView, attribute: .height, multiplier: 375/257, constant: 0)
+            NSLayoutConstraint.activate([aspectRatioConstraint])
+        }
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -138,10 +150,19 @@ extension HomeViewController: UICollectionViewDataSource {
                 let skeletonCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "SkeletonCollectionViewCell", for: indexPath) as! SkeletonCollectionViewCell
                 return skeletonCollectionViewCell
             } else {
-                let CharacterCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
-                CharacterCollectionViewCell.character = filteredCharacters?[indexPath.row]
-                CharacterCollectionViewCell.configure()
-                return CharacterCollectionViewCell
+                if UIDevice.current.orientation.isLandscape {
+                    let CharacterLandscapeCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterLandscapeCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
+                    CharacterLandscapeCollectionViewCell.character = filteredCharacters?[indexPath.row]
+                    CharacterLandscapeCollectionViewCell.configure()
+                    return CharacterLandscapeCollectionViewCell
+                    
+                } else {
+                    let CharacterCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
+                    CharacterCollectionViewCell.character = filteredCharacters?[indexPath.row]
+                    CharacterCollectionViewCell.configure()
+                    return CharacterCollectionViewCell
+                }
+                
             }
         default:
             return UICollectionViewCell()
@@ -152,9 +173,17 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.frame.width - 48) / 2.1
-        let height: CGFloat = width * (243 / 159.5)
-        return CGSize(width: width, height: height)
+        if UIDevice.current.orientation.isLandscape {
+            let width = (collectionView.frame.width - 48) / 2.1
+            let height: CGFloat = width * (117 / 367)
+            return CGSize(width: width, height: height)
+            
+        } else {
+            let width = (collectionView.frame.width - 48) / 2.1
+            let height: CGFloat = width * (243 / 159.5)
+            return CGSize(width: width, height: height)
+        }
+        
     }
 }
 
