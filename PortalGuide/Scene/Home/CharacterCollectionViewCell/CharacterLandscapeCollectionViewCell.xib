@@ -49,22 +49,22 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZsJ-Iv-tHg">
-                                <rect key="frame" x="133" y="15.999999999999996" width="93.333333333333314" height="52.666666666666657"/>
+                                <rect key="frame" x="133" y="15.999999999999996" width="218" height="52.666666666666657"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KP-eW-ESW">
-                                        <rect key="frame" x="0.0" y="0.0" width="93.333333333333329" height="15.333333333333334"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="218" height="15.333333333333334"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
                                         <color key="textColor" name="status.alive"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rick Sanchez" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bV0-qR-XHl">
-                                        <rect key="frame" x="0.0" y="15.333333333333332" width="93.333333333333329" height="21.999999999999996"/>
+                                        <rect key="frame" x="0.0" y="15.333333333333332" width="218" height="21.999999999999996"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                         <color key="textColor" name="grey.dark"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alien · Animal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htf-d3-oGb">
-                                        <rect key="frame" x="0.0" y="37.333333333333336" width="93.333333333333329" height="15.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="37.333333333333336" width="218" height="15.333333333333336"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
                                         <color key="textColor" name="grey.normal"/>
                                         <nil key="highlightedColor"/>
@@ -80,6 +80,7 @@
                             <constraint firstItem="ZsJ-Iv-tHg" firstAttribute="leading" secondItem="FnF-pu-RLv" secondAttribute="trailing" constant="16" id="ZOW-Tm-OWz"/>
                             <constraint firstItem="ZsJ-Iv-tHg" firstAttribute="top" secondItem="5a5-iU-uDt" secondAttribute="top" constant="16" id="ZzQ-vx-6Xu"/>
                             <constraint firstItem="FnF-pu-RLv" firstAttribute="top" secondItem="5a5-iU-uDt" secondAttribute="top" id="aYV-Cc-qGa"/>
+                            <constraint firstAttribute="trailing" secondItem="ZsJ-Iv-tHg" secondAttribute="trailing" constant="16" id="uB9-gX-1Hf"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
