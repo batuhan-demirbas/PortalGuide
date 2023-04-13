@@ -2,7 +2,7 @@
 //  DetailViewController.swift
 //  PortalGuide
 //
-//  Created by Batuhan on 5.04.2023.
+//  Created by Batuhan Demirbaş on 5.04.2023.
 //
 
 import UIKit
@@ -24,40 +24,25 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        adjustUIForOrientation()
         configure()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 20)
         
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
-        if UIDevice.current.orientation.isLandscape {
-            if let constraints = imageView.superview?.constraints {
-                for constraint in constraints {
-                    constraint.isActive = false
-                }
-            }
-            self.stackView.axis = .horizontal
-            
-        } else {
-            if let constraints = imageView.superview?.constraints {
-                for constraint in constraints {
-                    constraint.isActive = true
-                }
-            }
-            stackView.removeConstraint(stackView.constraints.last!)
-            self.stackView.axis = .vertical
-        }
+        adjustUIForOrientation()
         
     }
     
     func configure() {
         guard let character = character else { return }
+
         let episodes = viewModel.filterEpisodeURLs(episodeURLs: character.episode)
         let imageURL = URL(string: character.image ?? "")
-        
+
         title = character.name
         imageView.kf.setImage(with: imageURL)
         statusLabel.text = character.status
@@ -67,6 +52,17 @@ class DetailViewController: UIViewController {
         locationLabel.text = character.location?.name
         episodesLabel.text = episodes.joined(separator: ", ")
         createdLabel.text = character.created?.convertToCustomDateFormat()
+    }
+    
+    func adjustUIForOrientation() {
+        if UIDevice.current.orientation.isLandscape {
+            imageView.superview?.constraints.forEach { $0.isActive = false }
+            stackView.axis = .horizontal
+        } else {
+            imageView.superview?.constraints.forEach { $0.isActive = true }
+            stackView.removeConstraint(stackView.constraints.last!)
+            stackView.axis = .vertical
+        }
     }
     
 }

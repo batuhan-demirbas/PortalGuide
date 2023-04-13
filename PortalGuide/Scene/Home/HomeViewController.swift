@@ -27,9 +27,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        updateAspectRatioForHeader()
         updateMessageLabel()
-        
         searchTextField.delegate = self
         
         locationCollectionView.register(UINib(nibName: "LocationCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LocationCollectionViewCell")
@@ -46,15 +45,16 @@ class HomeViewController: UIViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        characterCollectionView.reloadData()
-        if UIDevice.current.orientation.isLandscape {
-            let aspectRatioConstraint = NSLayoutConstraint(item: headarView, attribute: .width, relatedBy: .equal, toItem: headarView, attribute: .height, multiplier: 812/226, constant: 0)
-            NSLayoutConstraint.activate([aspectRatioConstraint])
-        } else {
-            let aspectRatioConstraint = NSLayoutConstraint(item: headarView, attribute: .width, relatedBy: .equal, toItem: headarView, attribute: .height, multiplier: 375/257, constant: 0)
-            NSLayoutConstraint.activate([aspectRatioConstraint])
-        }
+        updateAspectRatioForHeader()
         
+    }
+    
+    func updateAspectRatioForHeader() {
+        let aspectRatioMultiplier: CGFloat = UIApplication.shared.statusBarOrientation.isLandscape ? 812/226 : 375/257
+
+        let aspectRatioConstraint = NSLayoutConstraint(item: headarView, attribute: .width, relatedBy: .equal, toItem: headarView, attribute: .height, multiplier: aspectRatioMultiplier, constant: 0)
+        NSLayoutConstraint.activate([aspectRatioConstraint])
+        characterCollectionView.reloadData()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -150,7 +150,7 @@ extension HomeViewController: UICollectionViewDataSource {
                 let skeletonCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "SkeletonCollectionViewCell", for: indexPath) as! SkeletonCollectionViewCell
                 return skeletonCollectionViewCell
             } else {
-                if UIDevice.current.orientation.isLandscape {
+                if UIApplication.shared.statusBarOrientation.isLandscape {
                     let CharacterLandscapeCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterLandscapeCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
                     CharacterLandscapeCollectionViewCell.character = filteredCharacters?[indexPath.row]
                     CharacterLandscapeCollectionViewCell.configure()
@@ -173,7 +173,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if UIDevice.current.orientation.isLandscape {
+        if UIApplication.shared.statusBarOrientation.isLandscape {
             let width = (collectionView.frame.width - 48) / 2.1
             let height: CGFloat = width * (117 / 367)
             return CGSize(width: width, height: height)
@@ -194,7 +194,7 @@ extension HomeViewController: UICollectionViewDelegate {
         collectionView.reloadData()
         switch collectionView {
         case locationCollectionView:
-            //characterCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+            // TODO: characterCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
             selectedLocation = viewModel.locationArray[indexPath.row]
             filteredCharacters = nil
             characterCollectionView.reloadData()
@@ -250,28 +250,22 @@ extension HomeViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         filteredCharacters = []
-        
         let searchText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
         
         if searchText == "" {
             filteredCharacters = viewModel.characters ?? []
         } else {
-            
             filteredCharacters = viewModel.characters?.filter({ $0.name?.lowercased().contains(searchText.lowercased()) == true }) ?? []
         }
         
         characterCollectionView.reloadData()
-        
         return true
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         filteredCharacters = viewModel.characters
-        
         characterCollectionView.reloadData()
-        
         return true
     }
 }
