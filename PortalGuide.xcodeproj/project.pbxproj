@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D520783529E44C96001BD84D /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D520783429E44C96001BD84D /* SplashViewController.swift */; };
+		D527AD5B29E852DF0012AD1B /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527AD5A29E852DF0012AD1B /* Color+Extension.swift */; };
 		D527DEFA29DC9C2F0024510D /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527DEF929DC9C2F0024510D /* SearchTextField.swift */; };
 		D527DEFC29DC9C6E0024510D /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527DEFB29DC9C6E0024510D /* UITextField+Extension.swift */; };
 		D59FD02429E6EB810031A190 /* CharacterLandscapeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D59FD02329E6EB810031A190 /* CharacterLandscapeCollectionViewCell.xib */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		D520783429E44C96001BD84D /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		D527AD5A29E852DF0012AD1B /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		D527DEF929DC9C2F0024510D /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		D527DEFB29DC9C6E0024510D /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		D59FD02329E6EB810031A190 /* CharacterLandscapeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterLandscapeCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				D527DEFB29DC9C6E0024510D /* UITextField+Extension.swift */,
 				D5F8D75F29DFFCD500B318EF /* String+Extension.swift */,
 				D5F8D76129E0024E00B318EF /* UIViewController+Extension.swift */,
+				D527AD5A29E852DF0012AD1B /* Color+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				D5C969C829DD5B1300AEC490 /* CharacterCollectionViewCell.swift in Sources */,
 				D5C969CD29DD5FC600AEC490 /* LocationCollectionViewCell.swift in Sources */,
 				D5DAF39029D1B9DC00786E53 /* HomeViewModel.swift in Sources */,
+				D527AD5B29E852DF0012AD1B /* Color+Extension.swift in Sources */,
 				D5F8D76229E0024E00B318EF /* UIViewController+Extension.swift in Sources */,
 				D5C969D029DD6C7500AEC490 /* TopRoundedImageView.swift in Sources */,
 				D5DAF38429D1B10700786E53 /* Location.swift in Sources */,

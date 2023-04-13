@@ -16,13 +16,13 @@ class SearchTextField: UITextField {
         
         guard let placeholder = self.placeholder else {return}
         self.attributedPlaceholder = NSAttributedString(
-            string: "\(placeholder)", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "grey.300") ?? .blue]
+            string: "\(placeholder)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Grey.normal ?? .blue]
         )
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 48, height: 52))
         let imageView = UIImageView(frame: CGRect(x: 16, y: (view.frame.size.height - 24) / 2, width: 24, height: 24))
         imageView.image = UIImage(named: "search")
-        imageView.tintColor = UIColor(named: "grey.300")
+        imageView.tintColor = .Grey.normal
         view.addSubview(imageView)
         leftView = view
         leftViewMode = .always
@@ -50,7 +50,7 @@ class SearchTextField: UITextField {
 extension SearchTextField: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         textField.layer.borderWidth = 1.3
-        textField.layer.borderColor = UIColor(named: "primary.400")?.cgColor
+        textField.layer.borderColor = UIColor.primary.cgColor
         return true
     }
     

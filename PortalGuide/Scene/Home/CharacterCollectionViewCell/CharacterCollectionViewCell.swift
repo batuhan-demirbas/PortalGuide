@@ -29,23 +29,23 @@ class CharacterCollectionViewCell: UICollectionViewCell {
         switch character?.gender?.lowercased() {
         case Gender.male.rawValue:
             genderImageView.image = UIImage(named: Gender.male.icon)
-            genderImageView.tintColor = UIColor(named: "gender.blue")
+            genderImageView.tintColor = .Gender.male
         case Gender.female.rawValue:
             genderImageView.image = UIImage(named: Gender.female.icon)
-            genderImageView.tintColor = UIColor(named: "gender.pink")
+            genderImageView.tintColor = .Gender.female
         default:
             genderImageView.image = UIImage(named: Gender.unknown.icon)
-            genderImageView.tintColor = UIColor(named: "gender.orange")
+            genderImageView.tintColor = .Gender.unknown
         }
         
         statusLabel.text = character?.status?.capitalized
         switch character?.status?.lowercased() {
         case Status.alive.rawValue:
-            statusLabel.textColor = UIColor(named: Status.alive.color)
+            statusLabel.textColor = .Status.alive
         case Status.dead.rawValue:
-            statusLabel.textColor = UIColor(named: Status.dead.color)
+            statusLabel.textColor = .Status.dead
         default:
-            statusLabel.textColor = UIColor(named: Status.unknown.color)
+            statusLabel.textColor = .Status.unknown
         }
         
         nameLabel.text = character?.name

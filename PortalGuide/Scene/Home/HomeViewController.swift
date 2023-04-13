@@ -138,11 +138,11 @@ extension HomeViewController: UICollectionViewDataSource {
             let locationCollectionViewCell = locationCollectionView.dequeueReusableCell(withReuseIdentifier: "LocationCollectionViewCell", for: indexPath) as! LocationCollectionViewCell
             locationCollectionViewCell.label.text = viewModel.locationArray[indexPath.row].name
             if viewModel.locationArray[indexPath.row].name == "Earth (C-137)" {
-                locationCollectionViewCell.backgroundColor = UIColor(named: "primary.500")
-                locationCollectionViewCell.label.textColor = UIColor(named: "gray.500")
+                locationCollectionViewCell.backgroundColor = .primary
+                locationCollectionViewCell.label.textColor = .Grey.dark
             } else {
                 locationCollectionViewCell.backgroundColor = .clear
-                locationCollectionViewCell.label.textColor = UIColor(named: "white")
+                locationCollectionViewCell.label.textColor = .white
             }
             return locationCollectionViewCell
         case characterCollectionView:
@@ -225,8 +225,8 @@ extension HomeViewController: UICollectionViewDelegate {
         if let locationCell = cell as? LocationCollectionViewCell {
             if (viewModel.locationArray[indexPath.row]) != nil {
                 if indexPath == selectedIndexPath {
-                    locationCell.backgroundColor = UIColor(named: "primary.500")
-                    locationCell.label.textColor = UIColor(named: "gray.500")
+                    locationCell.backgroundColor = .primary
+                    locationCell.label.textColor = .Grey.dark
                 } else {
                     locationCell.backgroundColor = .clear
                     locationCell.label.textColor = .white
