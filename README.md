@@ -15,7 +15,7 @@ Developed using Rick and Morty API, **Portal Guide** application provides a comp
 ## Previews
 | Splash Screen | Home Screen | Detail Screen |
 | --- | --- | --- |
-| ![Preview](asset/splash_screen.png) | ![Preview](asset/home_screen.gif) | ![Preview](asset/detail_screen.gif)  |
+| ![Preview](asset/splash_screen.gif) | ![Preview](asset/home_screen.gif) | ![Preview](asset/detail_screen.gif)  |
 
 ## Project Tech Stack
 - Xcode: Version 14.2

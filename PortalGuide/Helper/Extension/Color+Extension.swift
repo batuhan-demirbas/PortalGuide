@@ -10,14 +10,14 @@ import UIKit
 
 extension UIColor {
 
-    // MARK: - Gender Colors
+    // MARK: Gender Colors
     class Gender {
         static let male = UIColor(named: "gender.male")!
         static let unknown = UIColor(named: "gender.unknown")!
         static let female = UIColor(named: "gender.female")!
     }
     
-    // MARK: - Grey Colors
+    // MARK:  Grey Colors
     class Grey {
        
         static let light = UIColor(named: "grey.light")!
@@ -25,10 +25,10 @@ extension UIColor {
         static let dark = UIColor(named: "grey.dark")!
     }
     
-    // MARK: - Primary Colors
+    // MARK:  Primary Colors
     static let primary = UIColor(named: "primary")!
     
-    // MARK: - Status Colors
+    // MARK:  Status Colors
     class Status {
         static let alive = UIColor(named: "status.alive")!
         static let unknown = UIColor(named: "status.unknown")!

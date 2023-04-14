@@ -174,7 +174,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dPK-Vr-apy">
-                                <rect key="frame" x="0.0" y="265" width="514" height="597"/>
+                                <rect key="frame" x="0.0" y="265" width="414" height="597"/>
                                 <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="8" id="OR6-9c-bL0">
                                     <size key="itemSize" width="160" height="243"/>
@@ -206,17 +206,15 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="dPK-Vr-apy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0vN-CT-w1D"/>
+                            <constraint firstItem="dPK-Vr-apy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0vN-CT-w1D"/>
                             <constraint firstItem="w1G-c6-vOx" firstAttribute="top" secondItem="j5e-kZ-Sat" secondAttribute="bottom" constant="94" id="7J2-J6-CE7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dPK-Vr-apy" secondAttribute="bottom" id="Bm7-4q-RHY"/>
                             <constraint firstItem="w1G-c6-vOx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="D95-1I-Gba"/>
                             <constraint firstItem="dPK-Vr-apy" firstAttribute="top" secondItem="j5e-kZ-Sat" secondAttribute="bottom" id="Nsi-O1-lXR"/>
-                            <constraint firstItem="dPK-Vr-apy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="100" id="SiE-DQ-yTN"/>
                             <constraint firstItem="j5e-kZ-Sat" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Vwe-dx-Pv6"/>
                             <constraint firstItem="j5e-kZ-Sat" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="YPz-LW-Vw8"/>
                             <constraint firstAttribute="trailing" secondItem="j5e-kZ-Sat" secondAttribute="trailing" id="j5z-2K-ajG"/>
-                            <constraint firstItem="dPK-Vr-apy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="vxJ-T6-HnW"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dPK-Vr-apy" secondAttribute="trailing" id="x8l-tt-x0y"/>
+                            <constraint firstAttribute="trailing" secondItem="dPK-Vr-apy" secondAttribute="trailing" id="x8l-tt-x0y"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w1G-c6-vOx" secondAttribute="trailing" constant="100" id="zP9-zw-zZN"/>
                         </constraints>
                     </view>
@@ -402,7 +400,7 @@
             <color red="0.125" green="0.13300000131130219" blue="0.15299999713897705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="grey.normal">
-            <color red="0.67450980392156867" green="0.68627450980392157" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.67500001192092896" green="0.68599998950958252" blue="0.72200000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
