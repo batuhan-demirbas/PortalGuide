@@ -6,7 +6,6 @@
 - <a href="#about">About</a>
 - <a href="#project-tech-stack">Project Tech Stack</a>
 - <a href="#backend-application">Backend Application</a>
-- <a href="#some-highlighted-things">Some Highlighted Things</a>
 - <a href="#previews">Previews</a>
 
 ## About
@@ -19,7 +18,6 @@ Developed using Rick and Morty API, **Portal Guide** application provides a comp
 
 ## Project Tech Stack
 - Xcode: Version 14.2
-- Language: Swift 5.3.2
 - Minimum iOS Version: 14.0
 - Design Pattern: MVVM
 - Dependenct Manager: Swift Package Manager

@@ -44,7 +44,7 @@ class DetailViewController: UIViewController {
         let imageURL = URL(string: character.image ?? "")
 
         title = character.name
-        imageView.kf.setImage(with: imageURL)
+        imageView.kf.setImage(with: imageURL, placeholder: UIImage(named: "placeholder"))
         statusLabel.text = character.status
         specyLabel.text = character.species
         genderLabel.text = character.gender

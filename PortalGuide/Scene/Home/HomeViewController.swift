@@ -190,7 +190,10 @@ extension HomeViewController: UICollectionViewDelegate {
         collectionView.reloadData()
         switch collectionView {
         case locationCollectionView:
-            // TODO: characterCollectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+            if collectionView.numberOfItems(inSection: 0) > 0 {
+                let topIndexPath = IndexPath(item: 0, section: 0)
+                collectionView.scrollToItem(at: topIndexPath, at: .top, animated: true)
+            }
             selectedLocation = viewModel.locationArray[indexPath.row]
             filteredCharacters = nil
             characterCollectionView.reloadData()
