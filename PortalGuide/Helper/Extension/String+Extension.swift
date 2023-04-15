@@ -2,7 +2,7 @@
 //  String+Extension.swift
 //  PortalGuide
 //
-//  Created by Batuhan on 7.04.2023.
+//  Created by Batuhan Demirbaş on 7.04.2023.
 //
 
 import Foundation

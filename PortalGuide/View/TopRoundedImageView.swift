@@ -2,7 +2,7 @@
 //  TopRoundedImageView.swift
 //  PortalGuide
 //
-//  Created by Batuhan on 5.04.2023.
+//  Created by Batuhan Demirbaş on 5.04.2023.
 //
 
 import UIKit

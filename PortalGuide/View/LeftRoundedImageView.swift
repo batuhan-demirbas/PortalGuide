@@ -2,7 +2,7 @@
 //  LeftRoundedImageView.swift
 //  PortalGuide
 //
-//  Created by Batuhan on 14.04.2023.
+//  Created by Batuhan Demirbaş on 14.04.2023.
 //
 
 import UIKit

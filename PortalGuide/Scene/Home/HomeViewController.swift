@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  PortalGuide
 //
-//  Created by Batuhan on 27.03.2023.
+//  Created by Batuhan Demirbaş on 27.03.2023.
 //
 
 import UIKit
@@ -29,6 +29,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         updateAspectRatioForHeader()
         updateMessageLabel()
+        hideKeyboardWhenTappedAround()
         searchTextField.delegate = self
         
         locationCollectionView.register(UINib(nibName: "LocationCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "LocationCollectionViewCell")

@@ -26,7 +26,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         adjustUIForOrientation()
         configure()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        hideKeyboardWhenTappedAround()
         
     }
     
@@ -34,7 +34,6 @@ class DetailViewController: UIViewController {
         super.traitCollectionDidChange(previousTraitCollection)
         
         adjustUIForOrientation()
-        
     }
     
     func configure() {

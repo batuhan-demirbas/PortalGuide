@@ -2,7 +2,7 @@
 //  Character.swift
 //  PortalGuide
 //
-//  Created by Batuhan on 27.03.2023.
+//  Created by Batuhan Demirbaş on 27.03.2023.
 //
 
 import Foundation
