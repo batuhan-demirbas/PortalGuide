@@ -10,9 +10,16 @@ import Foundation
 class HomeViewModel {
     let manager = HomeManager.shared
     
+    var selectedIndexPath: IndexPath = IndexPath(row: 0, section: 0)
+    var selectedLocation: ResultElement?
     var location: Location?
     var locationArray: [ResultElement] = []
+    var nextPage: Substring?
+    
     var characters: [Character]?
+    var characterIdsInSelectedLocation: [String]?
+    var filteredCharacters: [Character]?
+    
     var errorCallback: ((String)->())?
     var successCallback: (()->())?
     
@@ -22,9 +29,13 @@ class HomeViewModel {
             if let error = error {
                 self?.errorCallback?(error.localizedDescription)
             } else {
+                if self?.selectedLocation == nil {
+                    self?.selectedLocation = location.results.first
+                }
                 self?.locationArray.append(contentsOf: (location.results))
                 self?.location = location
                 self?.successCallback?()
+                self?.nextPage = location.info?.next?.split(separator: "=").last
             }
             
         }
@@ -36,18 +47,19 @@ class HomeViewModel {
                 self?.errorCallback?(error.localizedDescription)
             } else {
                 self?.characters = characters
+                self?.filteredCharacters = characters
                 self?.successCallback?()
             }
         }
     }
     
-    func filterCharacterIds(location: ResultElement) -> [String] {
+    func filterCharacterIds(location: ResultElement) {
         var ids: [String] = []
         location.residents?.forEach({ characterURL in
             let id = characterURL.split(separator: "/").last
             ids.append(String(id ?? "0"))
         })
-        return ids
+        characterIdsInSelectedLocation = ids
     }
     
 }

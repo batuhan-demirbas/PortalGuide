@@ -26,7 +26,6 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         adjustUIForOrientation()
         configure()
-        hideKeyboardWhenTappedAround()
         
     }
     

@@ -16,7 +16,7 @@ class SearchTextField: UITextField {
         
         guard let placeholder = self.placeholder else {return}
         self.attributedPlaceholder = NSAttributedString(
-            string: "\(placeholder)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Grey.normal ?? .blue]
+            string: "\(placeholder)", attributes: [NSAttributedString.Key.foregroundColor: UIColor.Grey.normal]
         )
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 48, height: 52))

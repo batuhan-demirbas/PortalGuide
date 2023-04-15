@@ -140,7 +140,7 @@
                                                                 </constraints>
                                                                 <color key="textColor" name="grey.dark"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                                                                <textInputTraits key="textInputTraits" returnKeyType="search" textContentType="name"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="name"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                         <integer key="value" value="16"/>
@@ -148,7 +148,7 @@
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSearch" value="YES"/>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="3WJ-hX-T8W"/>
+                                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="CDc-Dw-0ao"/>
                                                                 </connections>
                                                             </textField>
                                                         </subviews>
@@ -393,7 +393,7 @@
     </designables>
     <resources>
         <image name="background" width="1440" height="693"/>
-        <image name="logo" width="291" height="89"/>
+        <image name="logo" width="248" height="69"/>
         <image name="noalien" width="167" height="66"/>
         <image name="rick" width="150" height="150"/>
         <namedColor name="grey.dark">

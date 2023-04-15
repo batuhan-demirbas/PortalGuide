@@ -10,8 +10,8 @@ import UIKit
 class SplashViewController: UIViewController {
     
     @IBOutlet weak var messageLabel: UILabel!
+    
     let viewModel = HomeViewModel()
-    var page = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +26,14 @@ class SplashViewController: UIViewController {
         }
         viewModel.successCallback = { [weak self] in
             let homeVC = HomeViewController()
-            homeVC.selectedLocation = self?.viewModel.location?.results.first
+            self?.viewModel.selectedLocation = self?.viewModel.location?.results.first
             
-            homeVC.characterIdsInSelectedLocation = self?.viewModel.filterCharacterIds(location: (homeVC.selectedLocation)!)
-            guard let characterIds = homeVC.characterIdsInSelectedLocation else { return }
+            self?.viewModel.filterCharacterIds(location: (self?.viewModel.selectedLocation!)!)
+            guard let characterIds = self?.viewModel.characterIdsInSelectedLocation else { return }
+            
             self?.viewModel.getCharactersByIds(ids: characterIds)
             self?.viewModel.successCallback = { [weak self] in
-                homeVC.filteredCharacters = self?.viewModel.characters
+                homeVC.viewModel.filteredCharacters = self?.viewModel.characters
                 _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { timer in
                     self?.performSegue(withIdentifier: "showHome", sender: nil)
                     
