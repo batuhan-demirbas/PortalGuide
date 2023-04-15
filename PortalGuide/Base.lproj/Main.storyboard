@@ -60,7 +60,7 @@
         <scene sceneID="dLa-V1-vXo">
             <objects>
                 <navigationController id="WFY-GR-fOW" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="bDO-5k-Y1S"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="bDO-5k-Y1S"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hp4-SC-1uF">
                         <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -106,22 +106,23 @@
                                         </connections>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="k38-Us-hcU">
-                                        <rect key="frame" x="24" y="78" width="366" height="109.5"/>
+                                        <rect key="frame" x="24" y="57.5" width="366" height="130"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Q9p-DR-e6p">
-                                                <rect key="frame" x="0.0" y="0.0" width="366" height="109.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="366" height="130"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tOV-Zj-7Kx">
-                                                        <rect key="frame" x="0.0" y="0.0" width="366" height="49.5"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tOV-Zj-7Kx">
+                                                        <rect key="frame" x="0.0" y="0.0" width="366" height="70"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Yt-b0-q7o">
-                                                                <rect key="frame" x="0.0" y="0.0" width="366" height="27.5"/>
-                                                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="20"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="4fp-pa-8U0">
+                                                                <rect key="frame" x="0.0" y="0.0" width="144" height="40"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="4fp-pa-8U0" secondAttribute="height" multiplier="248:69" id="50y-pT-Zcr"/>
+                                                                    <constraint firstAttribute="height" constant="40" id="jFR-u7-7aa"/>
+                                                                </constraints>
+                                                            </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a Rick and Morty planet!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZ0-8j-0os">
-                                                                <rect key="frame" x="0.0" y="27.5" width="366" height="22"/>
+                                                                <rect key="frame" x="0.0" y="48" width="235" height="22"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                                                                 <color key="textColor" name="grey.normal"/>
                                                                 <nil key="highlightedColor"/>
@@ -129,7 +130,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iej-O4-Q18">
-                                                        <rect key="frame" x="0.0" y="57.5" width="366" height="52"/>
+                                                        <rect key="frame" x="0.0" y="78" width="366" height="52"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search character..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="te5-WO-7Iz" customClass="SearchTextField" customModule="PortalGuide" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="366" height="52"/>
@@ -189,36 +190,39 @@
                                 </connections>
                             </collectionView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="w1G-c6-vOx">
-                                <rect key="frame" x="100" y="359" width="214" height="86.5"/>
+                                <rect key="frame" x="123" y="520" width="168" height="86.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noalien" translatesAutoresizingMaskIntoConstraints="NO" id="16w-23-Btt">
-                                        <rect key="frame" x="0.0" y="0.0" width="214" height="66"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="168" height="66"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no signs of life found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmz-bo-XoG">
-                                        <rect key="frame" x="0.0" y="70" width="214" height="16.5"/>
+                                        <rect key="frame" x="0.0" y="70" width="168" height="16.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="w1G-c6-vOx" secondAttribute="height" multiplier="167:86" id="XM1-Kk-AeI"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dPK-Vr-apy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0vN-CT-w1D"/>
-                            <constraint firstItem="w1G-c6-vOx" firstAttribute="top" secondItem="j5e-kZ-Sat" secondAttribute="bottom" constant="94" id="7J2-J6-CE7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dPK-Vr-apy" secondAttribute="bottom" id="Bm7-4q-RHY"/>
-                            <constraint firstItem="w1G-c6-vOx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="D95-1I-Gba"/>
+                            <constraint firstItem="w1G-c6-vOx" firstAttribute="centerX" secondItem="dPK-Vr-apy" secondAttribute="centerX" id="JtY-Gf-fmQ"/>
                             <constraint firstItem="dPK-Vr-apy" firstAttribute="top" secondItem="j5e-kZ-Sat" secondAttribute="bottom" id="Nsi-O1-lXR"/>
                             <constraint firstItem="j5e-kZ-Sat" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Vwe-dx-Pv6"/>
                             <constraint firstItem="j5e-kZ-Sat" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="YPz-LW-Vw8"/>
+                            <constraint firstItem="w1G-c6-vOx" firstAttribute="top" relation="greaterThanOrEqual" secondItem="j5e-kZ-Sat" secondAttribute="bottom" constant="20" id="dJE-Wy-mG0"/>
                             <constraint firstAttribute="trailing" secondItem="j5e-kZ-Sat" secondAttribute="trailing" id="j5z-2K-ajG"/>
+                            <constraint firstItem="w1G-c6-vOx" firstAttribute="centerY" secondItem="dPK-Vr-apy" secondAttribute="centerY" id="rQx-08-u8i"/>
                             <constraint firstAttribute="trailing" secondItem="dPK-Vr-apy" secondAttribute="trailing" id="x8l-tt-x0y"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w1G-c6-vOx" secondAttribute="trailing" constant="100" id="zP9-zw-zZN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="YL3-fK-oBd"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="YL3-fK-oBd"/>
                     <connections>
                         <outlet property="alertImageView" destination="16w-23-Btt" id="Hcc-p7-hFr"/>
                         <outlet property="alertLabel" destination="hmz-bo-XoG" id="vOf-Tt-7Fa"/>
@@ -226,7 +230,6 @@
                         <outlet property="characterCollectionView" destination="dPK-Vr-apy" id="iqK-vE-p21"/>
                         <outlet property="headarView" destination="j5e-kZ-Sat" id="Bi9-Wf-A16"/>
                         <outlet property="locationCollectionView" destination="3pm-vc-z3P" id="g42-uW-Kfz"/>
-                        <outlet property="messageLabel" destination="0Yt-b0-q7o" id="GwS-cB-Sqs"/>
                         <outlet property="searchTextField" destination="te5-WO-7Iz" id="vkm-hx-E81"/>
                         <segue destination="sBi-u9-yfo" kind="show" identifier="showDetail" id="f6z-fP-tAG"/>
                     </connections>

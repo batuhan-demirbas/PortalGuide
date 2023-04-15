@@ -44,7 +44,7 @@ class SplashViewController: UIViewController {
     
     func updateMessageLabel() {
         if UserDefaults.standard.bool(forKey: "HasLaunchedBefore") {
-            messageLabel.text = "Hi"
+            messageLabel.text = "Hello!"
         }
     }
 }

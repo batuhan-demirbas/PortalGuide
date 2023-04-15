@@ -23,7 +23,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateAspectRatioForHeader()
-        updateMessageLabel()
         hideKeyboardWhenTappedAround()
         searchTextField.delegate = self
         
@@ -51,16 +50,6 @@ class HomeViewController: UIViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
-    }
-    
-    func updateMessageLabel() {
-        if UserDefaults.standard.bool(forKey: "HasLaunchedBefore") {
-            messageLabel.text = "Hi,"
-        }
-        else {
-            messageLabel.text = "Welcome,"
-            UserDefaults.standard.set(true, forKey: "HasLaunchedBefore")
-        }
     }
     
     fileprivate func viewModelConfiguration() {
