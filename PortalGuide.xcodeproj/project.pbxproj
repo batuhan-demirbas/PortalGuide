@@ -12,6 +12,7 @@
 		D527AD5D29E960C80012AD1B /* LeftRoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527AD5C29E960C80012AD1B /* LeftRoundedImageView.swift */; };
 		D527DEFA29DC9C2F0024510D /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527DEF929DC9C2F0024510D /* SearchTextField.swift */; };
 		D527DEFC29DC9C6E0024510D /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D527DEFB29DC9C6E0024510D /* UITextField+Extension.swift */; };
+		D583A2DF29EBF905006E8389 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D583A2DE29EBF905006E8389 /* UICollectionView+Extension.swift */; };
 		D59FD02429E6EB810031A190 /* CharacterLandscapeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D59FD02329E6EB810031A190 /* CharacterLandscapeCollectionViewCell.xib */; };
 		D5ADD81C29D1C03400D2A11A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D5ADD81B29D1C03400D2A11A /* Kingfisher */; };
 		D5C969C229DD5A7600AEC490 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C969C129DD5A7600AEC490 /* DetailViewController.swift */; };
@@ -49,6 +50,7 @@
 		D527AD5C29E960C80012AD1B /* LeftRoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftRoundedImageView.swift; sourceTree = "<group>"; };
 		D527DEF929DC9C2F0024510D /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		D527DEFB29DC9C6E0024510D /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		D583A2DE29EBF905006E8389 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		D59FD02329E6EB810031A190 /* CharacterLandscapeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterLandscapeCollectionViewCell.xib; sourceTree = "<group>"; };
 		D5C969C129DD5A7600AEC490 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D5C969C329DD5A8B00AEC490 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				D5F8D75F29DFFCD500B318EF /* String+Extension.swift */,
 				D5F8D76129E0024E00B318EF /* UIViewController+Extension.swift */,
 				D527AD5A29E852DF0012AD1B /* Color+Extension.swift */,
+				D583A2DE29EBF905006E8389 /* UICollectionView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D583A2DF29EBF905006E8389 /* UICollectionView+Extension.swift in Sources */,
 				D5C969C229DD5A7600AEC490 /* DetailViewController.swift in Sources */,
 				D5DAF38C29D1B3BF00786E53 /* LocationHelper.swift in Sources */,
 				D5F8D76929E00BE400B318EF /* SkeletonCollectionViewCell.swift in Sources */,

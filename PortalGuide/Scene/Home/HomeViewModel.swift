@@ -53,6 +53,15 @@ class HomeViewModel {
         }
     }
     
+    func filterCharacter(searchText: String) {
+        if searchText != "" {
+            filteredCharacters = characters?.filter({ $0.name?.lowercased().contains(searchText.lowercased()) == true }) ?? []
+        } else {
+            filteredCharacters = characters
+        }
+        
+    }
+    
     func filterCharacterIds(location: ResultElement) {
         var ids: [String] = []
         location.residents?.forEach({ characterURL in

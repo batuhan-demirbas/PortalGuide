@@ -10,7 +10,6 @@ import UIKit
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var headarView: UIView!
-    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var locationCollectionView: UICollectionView!
     @IBOutlet weak var characterCollectionView: UICollectionView!
@@ -40,27 +39,28 @@ class HomeViewController: UIViewController {
     }
     
     func updateAspectRatioForHeader() {
-        let aspectRatioMultiplier: CGFloat = UIApplication.shared.statusBarOrientation.isLandscape ? 812/226 : 375/257
-        
-        let aspectRatioConstraint = NSLayoutConstraint(item: headarView, attribute: .width, relatedBy: .equal, toItem: headarView, attribute: .height, multiplier: aspectRatioMultiplier, constant: 0)
+        let isLandscape = UIApplication.shared.statusBarOrientation.isLandscape
+        let aspectRatioMultiplier: CGFloat = isLandscape ? 812/226 : 375/257
+        let aspectRatioConstraint = NSLayoutConstraint(item: headarView as Any, attribute: .width, relatedBy: .equal, toItem: headarView, attribute: .height, multiplier: aspectRatioMultiplier, constant: 0)
         NSLayoutConstraint.activate([aspectRatioConstraint])
         characterCollectionView.reloadData()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
+        view.endEditing(true)
         return false
     }
     
     fileprivate func viewModelConfiguration() {
         viewModel.getLocation(page: "1")
-        viewModel.errorCallback = { [weak self] errorMessage in
+        viewModel.errorCallback = { errorMessage in
             print("error: \(errorMessage)")
         }
         viewModel.successCallback = { [weak self] in
             self?.locationCollectionView.reloadData()
             self?.viewModel.filterCharacterIds(location: (self?.viewModel.selectedLocation)!)
             guard let characterIds = self?.viewModel.characterIdsInSelectedLocation else { return }
+            
             self?.viewModel.getCharactersByIds(ids: characterIds)
             self?.viewModel.successCallback = { [weak self] in
                 self?.characterCollectionView.reloadData()
@@ -99,6 +99,7 @@ extension HomeViewController: UICollectionViewDataSource {
         } else {
             alertStackView.isHidden = true
         }
+        
         return viewModel.filteredCharacters?.count ?? 6
     }
     
@@ -111,40 +112,40 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case locationCollectionView:
-            let locationCollectionViewCell = locationCollectionView.dequeueReusableCell(withReuseIdentifier: "LocationCollectionViewCell", for: indexPath) as! LocationCollectionViewCell
-            locationCollectionViewCell.label.text = viewModel.locationArray[indexPath.row].name
-            if viewModel.locationArray[indexPath.row].name == "Earth (C-137)" {
-                locationCollectionViewCell.backgroundColor = .primary
-                locationCollectionViewCell.label.textColor = .Grey.dark
-            } else {
-                locationCollectionViewCell.backgroundColor = .clear
-                locationCollectionViewCell.label.textColor = .white
-            }
-            return locationCollectionViewCell
+            let locationCell = locationCollectionView.dequeueReusableCell(withReuseIdentifier: "LocationCollectionViewCell", for: indexPath) as! LocationCollectionViewCell
+            locationCell.label.text = viewModel.locationArray[indexPath.row].name
+            return locationCell
+            
         case characterCollectionView:
-            if viewModel.filteredCharacters == nil {
-                let skeletonCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "SkeletonCollectionViewCell", for: indexPath) as! SkeletonCollectionViewCell
-                return skeletonCollectionViewCell
-            } else {
-                if UIApplication.shared.statusBarOrientation.isLandscape {
-                    let CharacterLandscapeCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterLandscapeCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
-                    CharacterLandscapeCollectionViewCell.character = viewModel.filteredCharacters?[indexPath.row]
-                    CharacterLandscapeCollectionViewCell.configure()
-                    return CharacterLandscapeCollectionViewCell
-                    
-                } else {
-                    let CharacterCollectionViewCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
-                    CharacterCollectionViewCell.character = viewModel.filteredCharacters?[indexPath.row]
-                    CharacterCollectionViewCell.configure()
-                    return CharacterCollectionViewCell
-                }
-                
-            }
+            let characterCell = characterCVConfigure(cellForItemAt: indexPath)
+            return characterCell
+        
         default:
             return UICollectionViewCell()
         }
     }
     
+    func characterCVConfigure(cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if viewModel.filteredCharacters == nil {
+            let skeletonCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "SkeletonCollectionViewCell", for: indexPath) as! SkeletonCollectionViewCell
+            return skeletonCell
+            
+        } else {
+            if UIApplication.shared.statusBarOrientation.isLandscape {
+                let CharacterLandscapeCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterLandscapeCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
+                CharacterLandscapeCell.character = viewModel.filteredCharacters?[indexPath.row]
+                CharacterLandscapeCell.configure()
+                return CharacterLandscapeCell
+                
+            } else {
+                let CharacterCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
+                CharacterCell.character = viewModel.filteredCharacters?[indexPath.row]
+                CharacterCell.configure()
+                return CharacterCell
+            }
+            
+        }
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
@@ -162,27 +163,11 @@ extension HomeViewController: UICollectionViewDelegate {
         alertStackView.isHidden = true
         viewModel.selectedIndexPath = indexPath
         collectionView.reloadData()
+        
         switch collectionView {
         case locationCollectionView:
-            if characterCollectionView.numberOfItems(inSection: 0) > 0 {
-                let topIndexPath = IndexPath(item: 0, section: 0)
-                characterCollectionView.scrollToItem(at: topIndexPath, at: .top, animated: true)
-            }
-            viewModel.selectedLocation = viewModel.locationArray[indexPath.row]
-            viewModel.filteredCharacters = nil
-            characterCollectionView.reloadData()
-            self.viewModel.filterCharacterIds(location: (viewModel.selectedLocation)!)
-            guard let characterIds = viewModel.characterIdsInSelectedLocation else { return }
-            self.viewModel.getCharactersByIds(ids: characterIds)
-            self.viewModel.successCallback = { [weak self] in
-                if self?.searchTextField.text != "" {
-                    self?.filterCharacter()
-                } else {
-                    self?.viewModel.filteredCharacters = self?.viewModel.characters
-                    
-                }
-                self?.characterCollectionView.reloadData()
-            }
+            fetchCharacterWhenLocationSelect(didSelectItemAt: indexPath)
+            
         case characterCollectionView:
             guard let character = viewModel.filteredCharacters?[indexPath.row] else { return }
             let sender: Character = character
@@ -190,20 +175,36 @@ extension HomeViewController: UICollectionViewDelegate {
             
         default:
             print("defaults")
+        }
+        
+    }
+    
+    func fetchCharacterWhenLocationSelect(didSelectItemAt indexPath: IndexPath) {
+        viewModel.selectedLocation = viewModel.locationArray[indexPath.row]
+        viewModel.filteredCharacters = nil
+        self.viewModel.filterCharacterIds(location: (viewModel.selectedLocation)!)
+        guard let characterIds = viewModel.characterIdsInSelectedLocation else { return }
+        characterCollectionView.reloadData()
+        
+        self.viewModel.getCharactersByIds(ids: characterIds)
+        self.viewModel.successCallback = { [weak self] in
+            guard let searchText = self?.searchTextField.text else { return }
+            self?.viewModel.filterCharacter(searchText: searchText)
+            self?.characterCollectionView.reloadData()
+            self?.characterCollectionView.scrollTop()
             
         }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let locationCell = cell as? LocationCollectionViewCell {
-            if (viewModel.locationArray[indexPath.row]) != nil {
-                if indexPath == viewModel.selectedIndexPath {
-                    locationCell.backgroundColor = .primary
-                    locationCell.label.textColor = .Grey.dark
-                } else {
-                    locationCell.backgroundColor = .clear
-                    locationCell.label.textColor = .white
-                }
+            if indexPath == viewModel.selectedIndexPath {
+                locationCell.backgroundColor = .primary
+                locationCell.label.textColor = .Grey.dark
+            } else {
+                locationCell.backgroundColor = .clear
+                locationCell.label.textColor = .white
             }
         }
     }
@@ -211,23 +212,11 @@ extension HomeViewController: UICollectionViewDelegate {
 }
 
 extension HomeViewController: UITextFieldDelegate {
-    
-    func filterCharacter() {
-        viewModel.filteredCharacters = []
-        guard let searchText = searchTextField.text else { return }
-        viewModel.filteredCharacters = viewModel.characters?.filter({ $0.name?.lowercased().contains(searchText.lowercased()) == true }) ?? []
-        characterCollectionView.reloadData()
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        viewModel.filteredCharacters = []
-        let searchText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
-        
-        if searchText == "" {
-            viewModel.filteredCharacters = viewModel.characters ?? []
-        } else {
-            viewModel.filteredCharacters = viewModel.characters?.filter({ $0.name?.lowercased().contains(searchText.lowercased()) == true }) ?? []
+        if let searchText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) {
+            viewModel.filterCharacter(searchText: searchText)
         }
+        
         characterCollectionView.reloadData()
         return true
     }
@@ -237,6 +226,7 @@ extension HomeViewController: UITextFieldDelegate {
         characterCollectionView.reloadData()
         return true
     }
+    
 }
 
 extension HomeViewController: UIScrollViewDelegate {
@@ -248,15 +238,15 @@ extension HomeViewController: UIScrollViewDelegate {
             let threshold: CGFloat = 10.0
             if contentOffsetX + threshold >= maximumOffsetX {
                 if viewModel.location?.info?.next != nil && "1" != viewModel.nextPage  {
-                    loadMoreData()
+                    loadMoreLocationData()
                 }
             }
         }
     }
     
-    func loadMoreData() {
+    func loadMoreLocationData() {
         viewModel.getLocation(page: String(viewModel.nextPage ?? "1"))
-        viewModel.errorCallback = { [weak self] errorMessage in
+        viewModel.errorCallback = {errorMessage in
             print("error: \(errorMessage)")
         }
         viewModel.successCallback = { [weak self] in

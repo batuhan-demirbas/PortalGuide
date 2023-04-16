@@ -21,7 +21,7 @@ class SplashViewController: UIViewController {
     
     fileprivate func viewModelConfiguration() {
         viewModel.getLocation(page: "1")
-        viewModel.errorCallback = { [weak self] errorMessage in
+        viewModel.errorCallback = { errorMessage in
             print("error: \(errorMessage)")
         }
         viewModel.successCallback = { [weak self] in

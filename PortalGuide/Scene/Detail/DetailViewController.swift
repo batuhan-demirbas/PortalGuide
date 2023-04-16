@@ -26,18 +26,15 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         adjustUIForOrientation()
         configure()
-        
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        
         adjustUIForOrientation()
     }
     
     func configure() {
         guard let character = character else { return }
-
         let episodes = viewModel.filterEpisodeURLs(episodeURLs: character.episode)
         let imageURL = URL(string: character.image ?? "")
 
@@ -49,7 +46,7 @@ class DetailViewController: UIViewController {
         originLabel.text = character.origin?.name
         locationLabel.text = character.location?.name
         episodesLabel.text = episodes.joined(separator: ", ")
-        createdLabel.text = character.created?.convertToCustomDateFormat()
+        createdLabel.text = character.created?.convertDateFormat()
     }
     
     func adjustUIForOrientation() {

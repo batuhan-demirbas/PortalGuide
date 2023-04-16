@@ -8,11 +8,6 @@
 import Foundation
 
 class DetailViewModel {
-    let manager = HomeManager.shared
-    
-    var characters: [Character]?
-    var errorCallback: ((String)->())?
-    var successCallback: (()->())?
     
     func filterEpisodeURLs(episodeURLs: [String]) -> [String] {
         var episodes: [String] = []
