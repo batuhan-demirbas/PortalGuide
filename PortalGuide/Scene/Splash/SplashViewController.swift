@@ -25,21 +25,27 @@ class SplashViewController: UIViewController {
             print("error: \(errorMessage)")
         }
         viewModel.successCallback = { [weak self] in
-            let homeVC = HomeViewController()
             self?.viewModel.selectedLocation = self?.viewModel.location?.results.first
             
             self?.viewModel.filterCharacterIds(location: (self?.viewModel.selectedLocation!)!)
             guard let characterIds = self?.viewModel.characterIdsInSelectedLocation else { return }
+            guard let location = self?.viewModel.location else { return }
             
             self?.viewModel.getCharactersByIds(ids: characterIds)
             self?.viewModel.successCallback = { [weak self] in
-                homeVC.viewModel.filteredCharacters = self?.viewModel.characters
                 _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { timer in
-                    self?.performSegue(withIdentifier: "showHome", sender: nil)
+                    let sender: HomeData = HomeData(location: location, characters: self?.viewModel.characters)
+                    self?.performSegue(withIdentifier: "showHome", sender: sender)
                     
                 }
             }
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showHome", let navController = segue.destination as? UINavigationController, let homeVC = navController.children.first as? HomeViewController, let homeData = sender as? HomeData {
+                homeVC.homeData = homeData
+            }
     }
     
     func updateMessageLabel() {
@@ -47,4 +53,5 @@ class SplashViewController: UIViewController {
             messageLabel.text = "Hello!"
         }
     }
+    
 }

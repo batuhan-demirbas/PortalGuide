@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var alertLabel: UILabel!
     
     let viewModel = HomeViewModel()
+    var homeData: HomeData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,10 @@ class HomeViewController: UIViewController {
         characterCollectionView.register(UINib(nibName: "CharacterLandscapeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CharacterLandscapeCollectionViewCell")
         characterCollectionView.register(UINib(nibName: "SkeletonCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkeletonCollectionViewCell")
         
-        viewModelConfiguration()
+        if let homeData = homeData {
+            updateData(with: homeData)
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +44,15 @@ class HomeViewController: UIViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         updateAspectRatioForHeader()
+    }
+    
+    func updateData(with data: HomeData) {
+        viewModel.location = data.location
+        viewModel.locationArray.append(contentsOf: (data.location.results))
+        viewModel.characters = data.characters
+        viewModel.filteredCharacters = data.characters
+        characterCollectionView.reloadData()
+        locationCollectionView.reloadData()
     }
     
     func updateAspectRatioForHeader() {
@@ -53,23 +66,6 @@ class HomeViewController: UIViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return false
-    }
-    
-    fileprivate func viewModelConfiguration() {
-        viewModel.getLocation(page: "1")
-        viewModel.errorCallback = { errorMessage in
-            print("error: \(errorMessage)")
-        }
-        viewModel.successCallback = { [weak self] in
-            self?.locationCollectionView.reloadData()
-            self?.viewModel.filterCharacterIds(location: (self?.viewModel.selectedLocation)!)
-            guard let characterIds = self?.viewModel.characterIdsInSelectedLocation else { return }
-            
-            self?.viewModel.getCharactersByIds(ids: characterIds)
-            self?.viewModel.successCallback = { [weak self] in
-                self?.characterCollectionView.reloadData()
-            }
-        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -123,7 +119,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case characterCollectionView:
             let characterCell = characterCVConfigure(cellForItemAt: indexPath)
             return characterCell
-        
+            
         default:
             return UICollectionViewCell()
         }
@@ -139,7 +135,7 @@ extension HomeViewController: UICollectionViewDataSource {
             if windowScene.isLandscape {
                 let CharacterLandscapeCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterLandscapeCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
                 CharacterLandscapeCell.character = viewModel.filteredCharacters?[indexPath.row]
-           
+                
                 CharacterLandscapeCell.configure()
                 return CharacterLandscapeCell
                 

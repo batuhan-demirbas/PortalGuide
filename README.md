@@ -25,5 +25,3 @@ Developed using Rick and Morty API, **Portal Guide** application provides a comp
 
 ## Backend Application
 Backend services of this app are completely developed by someone else and can be viewed from this [link](https://rickandmortyapi.com/). I imported it into Postman for ease of use.
-
-![Preview](asset/home_screen.gif)
