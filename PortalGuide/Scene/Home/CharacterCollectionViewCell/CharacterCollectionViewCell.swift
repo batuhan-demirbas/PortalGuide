@@ -24,7 +24,7 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     
     func configure() {
         let imageURL = URL(string: character?.image ?? "")
-        characterImageView.kf.setImage(with: imageURL, placeholder: UIImage(named: "placeholder"))
+        characterImageView.kf.setImage(with: imageURL)
         
         switch character?.gender?.lowercased() {
         case Gender.male.rawValue:

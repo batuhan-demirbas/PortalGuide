@@ -21,7 +21,6 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateAspectRatioForHeader()
         hideKeyboardWhenTappedAround()
         searchTextField.delegate = self
         
@@ -33,14 +32,19 @@ class HomeViewController: UIViewController {
         viewModelConfiguration()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateAspectRatioForHeader()
+    }
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         updateAspectRatioForHeader()
     }
     
     func updateAspectRatioForHeader() {
-        let isLandscape = UIApplication.shared.statusBarOrientation.isLandscape
-        let aspectRatioMultiplier: CGFloat = isLandscape ? 812/226 : 375/257
+        let windowScene = UIApplication.shared.connectedScenes.first as! UIWindowScene
+        let aspectRatioMultiplier: CGFloat = windowScene.isLandscape ? 812/226 : 375/257
         let aspectRatioConstraint = NSLayoutConstraint(item: headarView as Any, attribute: .width, relatedBy: .equal, toItem: headarView, attribute: .height, multiplier: aspectRatioMultiplier, constant: 0)
         NSLayoutConstraint.activate([aspectRatioConstraint])
         characterCollectionView.reloadData()
@@ -131,9 +135,11 @@ extension HomeViewController: UICollectionViewDataSource {
             return skeletonCell
             
         } else {
-            if UIApplication.shared.statusBarOrientation.isLandscape {
+            let windowScene = UIApplication.shared.connectedScenes.first as! UIWindowScene
+            if windowScene.isLandscape {
                 let CharacterLandscapeCell = characterCollectionView.dequeueReusableCell(withReuseIdentifier: "CharacterLandscapeCollectionViewCell", for: indexPath) as! CharacterCollectionViewCell
                 CharacterLandscapeCell.character = viewModel.filteredCharacters?[indexPath.row]
+           
                 CharacterLandscapeCell.configure()
                 return CharacterLandscapeCell
                 
@@ -150,9 +156,9 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let isLandscape = UIApplication.shared.statusBarOrientation.isLandscape
+        let windowScene = UIApplication.shared.connectedScenes.first as! UIWindowScene
         let width = (collectionView.frame.width - 48) / 2.05
-        let height = isLandscape ? width * (117 / 367) : width * (243 / 159.5)
+        let height = windowScene.isLandscape ? width * (117 / 367) : width * (243 / 159.5)
         return CGSize(width: width, height: height)
     }
     

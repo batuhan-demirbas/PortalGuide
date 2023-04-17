@@ -31,6 +31,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="topCornerRadius">
                                         <real key="value" value="16"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="6s5-eQ-f5z">
@@ -106,28 +107,12 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gN8-ec-77n">
-                        <rect key="frame" x="8" y="8" width="32" height="32"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="32" id="eN6-YY-bx4"/>
-                            <constraint firstAttribute="height" constant="32" id="lfO-Wk-Ona"/>
-                        </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <integer key="value" value="8"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="tWE-qb-G14" secondAttribute="trailing" id="6od-Yu-7d5"/>
                 <constraint firstItem="tWE-qb-G14" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="8Zw-DZ-CgT"/>
-                <constraint firstItem="tWE-qb-G14" firstAttribute="width" secondItem="tWE-qb-G14" secondAttribute="height" multiplier="160:243" id="K2m-F0-QIc"/>
-                <constraint firstItem="gN8-ec-77n" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="TCK-x7-KIL"/>
-                <constraint firstItem="gN8-ec-77n" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="gBS-eH-PGw"/>
                 <constraint firstItem="tWE-qb-G14" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="s5M-S1-lsW"/>
                 <constraint firstAttribute="bottom" secondItem="tWE-qb-G14" secondAttribute="bottom" id="vRP-Kk-4c1"/>
             </constraints>
@@ -137,7 +122,7 @@
     </objects>
     <resources>
         <namedColor name="grey.light">
-            <color red="0.88627450980392153" green="0.89411764705882346" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.88599997758865356" green="0.89399999380111694" blue="0.90600001811981201" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -50,7 +50,8 @@ class DetailViewController: UIViewController {
     }
     
     func adjustUIForOrientation() {
-        if UIApplication.shared.statusBarOrientation.isLandscape {
+        let windowScene = UIApplication.shared.connectedScenes.first as! UIWindowScene
+        if windowScene.isLandscape {
             imageView.superview?.constraints.forEach { $0.isActive = false }
             stackView.axis = .horizontal
         } else {
