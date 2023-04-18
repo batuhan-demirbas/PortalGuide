@@ -22,6 +22,10 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="xMo-Rh-Pz2">
+                        <rect key="frame" x="40" y="7.6666666666666679" width="20" height="20"/>
+                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </activityIndicatorView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -29,8 +33,10 @@
             <constraints>
                 <constraint firstItem="2It-oD-98E" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="16g-DK-dCD"/>
                 <constraint firstAttribute="bottom" secondItem="2It-oD-98E" secondAttribute="bottom" constant="8" id="8G3-GD-81S"/>
+                <constraint firstItem="xMo-Rh-Pz2" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="R9d-mD-2RT"/>
                 <constraint firstAttribute="trailing" secondItem="2It-oD-98E" secondAttribute="trailing" constant="8" id="cNu-fn-TDj"/>
                 <constraint firstItem="2It-oD-98E" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="dex-hH-o0f"/>
+                <constraint firstItem="xMo-Rh-Pz2" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="gQw-H2-B9c"/>
             </constraints>
             <size key="customSize" width="100" height="195"/>
             <userDefinedRuntimeAttributes>
@@ -39,9 +45,10 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="indicator" destination="xMo-Rh-Pz2" id="39d-Oa-DPP"/>
                 <outlet property="label" destination="2It-oD-98E" id="7QL-os-K9N"/>
             </connections>
-            <point key="canvasLocation" x="145.03816793893128" y="29.929577464788736"/>
+            <point key="canvasLocation" x="143.5114503816794" y="29.929577464788736"/>
         </collectionViewCell>
     </objects>
 </document>

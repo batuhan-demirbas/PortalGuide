@@ -14,7 +14,9 @@ class HomeViewModel {
     var selectedLocation: ResultElement?
     var location: Location?
     var locationArray: [ResultElement] = []
+    var prev: Substring?
     var nextPage: Substring?
+    var isLoading: Bool = false
     
     var characters: [Character]?
     var characterIdsInSelectedLocation: [String]?
@@ -35,6 +37,7 @@ class HomeViewModel {
                 self?.locationArray.append(contentsOf: (location.results))
                 self?.location = location
                 self?.successCallback?()
+                self?.prev = location.info?.prev?.split(separator: "=").last
                 self?.nextPage = location.info?.next?.split(separator: "=").last
             }
             
