@@ -10,6 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var headarView: UIView!
+    @IBOutlet weak var searchDescriptionLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var locationCollectionView: UICollectionView!
     @IBOutlet weak var characterCollectionView: UICollectionView!
@@ -56,12 +57,19 @@ class HomeViewController: UIViewController {
     }
     
     func updateAspectRatioForHeader() {
-        let windowScene = UIApplication.shared.connectedScenes.first as! UIWindowScene
-        let aspectRatioMultiplier: CGFloat = windowScene.isLandscape ? 812/226 : 375/257
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+
+        let screenRatio = UIScreen.main.bounds.size.height / UIScreen.main.bounds.size.width
+        searchDescriptionLabel.isHidden = (screenRatio < 1) && (screenRatio > 0.50)
+
+        let aspectRatioMultiplier: CGFloat = windowScene.interfaceOrientation.isLandscape ? 812.0 / 226.0 : 375.0 / 257.0
+
         let aspectRatioConstraint = NSLayoutConstraint(item: headarView as Any, attribute: .width, relatedBy: .equal, toItem: headarView, attribute: .height, multiplier: aspectRatioMultiplier, constant: 0)
         NSLayoutConstraint.activate([aspectRatioConstraint])
+
         characterCollectionView.reloadData()
     }
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
@@ -153,7 +161,7 @@ extension HomeViewController: UICollectionViewDataSource {
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let windowScene = UIApplication.shared.connectedScenes.first as! UIWindowScene
-        let width = (collectionView.frame.width - 48) / 2.05
+        let width = (collectionView.frame.width - 48) / 2.06
         let height = windowScene.isLandscape ? width * (117 / 367) : width * (243 / 159.5)
         return CGSize(width: width, height: height)
     }

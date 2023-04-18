@@ -33,11 +33,8 @@ class SplashViewController: UIViewController {
             
             self?.viewModel.getCharactersByIds(ids: characterIds)
             self?.viewModel.successCallback = { [weak self] in
-                _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { timer in
-                    let sender: HomeData = HomeData(location: location, characters: self?.viewModel.characters)
-                    self?.performSegue(withIdentifier: "showHome", sender: sender)
-                    
-                }
+                let sender: HomeData = HomeData(location: location, characters: self?.viewModel.characters)
+                self?.performSegue(withIdentifier: "showHome", sender: sender)
             }
         }
     }
