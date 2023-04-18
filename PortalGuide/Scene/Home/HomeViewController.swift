@@ -31,6 +31,7 @@ class HomeViewController: UIViewController {
         characterCollectionView.register(UINib(nibName: "CharacterLandscapeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CharacterLandscapeCollectionViewCell")
         characterCollectionView.register(UINib(nibName: "SkeletonCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SkeletonCollectionViewCell")
         
+        
         if let homeData = homeData {
             updateData(with: homeData)
         }
@@ -51,6 +52,7 @@ class HomeViewController: UIViewController {
         viewModel.location = data.location
         viewModel.locationArray.append(contentsOf: (data.location.results))
         viewModel.characters = data.characters
+        viewModel.nextPage = data.location.info?.next?.split(separator: "=").last
         viewModel.filteredCharacters = data.characters
         characterCollectionView.reloadData()
         locationCollectionView.reloadData()
@@ -58,18 +60,18 @@ class HomeViewController: UIViewController {
     
     func updateAspectRatioForHeader() {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-
+        
         let screenRatio = UIScreen.main.bounds.size.height / UIScreen.main.bounds.size.width
         searchDescriptionLabel.isHidden = (screenRatio < 1) && (screenRatio > 0.50)
-
+        
         let aspectRatioMultiplier: CGFloat = windowScene.interfaceOrientation.isLandscape ? 812.0 / 226.0 : 375.0 / 257.0
-
+        
         let aspectRatioConstraint = NSLayoutConstraint(item: headarView as Any, attribute: .width, relatedBy: .equal, toItem: headarView, attribute: .height, multiplier: aspectRatioMultiplier, constant: 0)
         NSLayoutConstraint.activate([aspectRatioConstraint])
-
+        
         characterCollectionView.reloadData()
     }
-
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
@@ -90,7 +92,8 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case locationCollectionView:
-            return viewModel.locationArray.count
+            let count = viewModel.locationArray.count
+            return viewModel.isLoading ? count + 1 : count
         case characterCollectionView:
             return updateAlertStackView(with: viewModel)
         default:
@@ -120,14 +123,23 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case locationCollectionView:
-            let locationCell = locationCollectionView.dequeueReusableCell(withReuseIdentifier: "LocationCollectionViewCell", for: indexPath) as! LocationCollectionViewCell
-            locationCell.label.text = viewModel.locationArray[indexPath.row].name
+            let locationCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LocationCollectionViewCell", for: indexPath) as! LocationCollectionViewCell
+            
+            if viewModel.isLoading  && indexPath.item == viewModel.locationArray.count {
+                locationCell.indicator.isHidden = false
+                locationCell.label.isHidden = true
+            } else {
+                locationCell.indicator.isHidden = true
+                locationCell.label.isHidden = false
+                locationCell.label.text = viewModel.locationArray[indexPath.row].name
+                
+            }
+            
             return locationCell
             
         case characterCollectionView:
             let characterCell = characterCVConfigure(cellForItemAt: indexPath)
             return characterCell
-            
         default:
             return UICollectionViewCell()
         }
@@ -248,19 +260,24 @@ extension HomeViewController: UIScrollViewDelegate {
             let threshold: CGFloat = 10.0
             if contentOffsetX + threshold >= maximumOffsetX {
                 if viewModel.location?.info?.next != nil && "1" != viewModel.nextPage  {
-                    loadMoreLocationData()
+                    !viewModel.isLoading ? loadMoreLocationData() : nil
                 }
             }
         }
     }
     
     func loadMoreLocationData() {
+        viewModel.isLoading = true
+        locationCollectionView.reloadData()
         viewModel.getLocation(page: String(viewModel.nextPage ?? "1"))
         viewModel.errorCallback = {errorMessage in
             print("error: \(errorMessage)")
+            self.viewModel.isLoading = false
         }
         viewModel.successCallback = { [weak self] in
             self?.locationCollectionView.reloadData()
+            self?.viewModel.isLoading = false
+            
         }
     }
     
